@@ -18,6 +18,8 @@ public interface CategorieSessionBeanLocal {
 
     Categorie getCategorieFromId(int id);
 
-    List<Categorie> allCategorie();
+    List<Categorie> allCategorie(int idlang);
+    
+    List<Categorie> allCategorieTrad(int id);
     
 }

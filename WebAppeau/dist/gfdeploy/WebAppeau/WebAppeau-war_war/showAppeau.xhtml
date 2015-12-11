@@ -18,32 +18,38 @@
                 <h:dataTable value="#{animalManager.appeauFromAnimal(param.selectedAnimal)}" var="line" border="1">
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Image"/>
+                            <h:outputText value="#{msg.imgApp}"/>
                         </f:facet>
                         <h:graphicImage url="#{line.urlImage}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Appeau"></h:outputText>
+                            <h:outputText value="#{msg.appeau}"></h:outputText>
                         </f:facet>
                         <h:outputText value="#{line.nom}"></h:outputText>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Stock"></h:outputText>
+                            <h:outputText value="#{msg.stock}"></h:outputText>
                         </f:facet>
                         <h:outputText value="#{line.nbStock}" binding="#{confirmOrder}"></h:outputText>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Quantitée voulue"></h:outputText>
+                            <h:outputText value="#{msg.price}"/>
+                        </f:facet>
+                        <h:graphicImage url="#{line.prix}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{msg.order}"></h:outputText>
                         </f:facet>
                         <h:form>
                         <h:inputText id="inputQte">
                             <f:validator validatorId="orderValidator"></f:validator>
                             <f:attribute name="confirmOrder" value ="#{confirmOrder}"/>
                         </h:inputText><br></br>
-                        <h:commandButton value="Commander" action="faces/panier.xhtml"></h:commandButton><br></br>
+                        <h:commandButton value="#{msg.order}" action="faces/panier.xhtml"></h:commandButton><br></br>
                         <h:message for="inputQte"></h:message>
                         </h:form>
                     </h:column>
@@ -55,32 +61,38 @@
                     <h:dataTable value="#{animalManager.appeauFromAnimal(animalManager.saveAnimal)}" var="line" border="1">
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Image"/>
+                            <h:outputText value="#{msg.imgApp}"/>
                         </f:facet>
                         <h:graphicImage url="#{line.urlImage}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Appeau"></h:outputText>
+                            <h:outputText value="#{msg.appeau}"></h:outputText>
                         </f:facet>
                         <h:outputText value="#{line.nom}"></h:outputText>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Stock"></h:outputText>
+                            <h:outputText value="#{msg.stock}"></h:outputText>
                         </f:facet>
                         <h:outputText value="#{line.nbStock}" binding="#{confirmOrder}"></h:outputText>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Quantitée voulue"></h:outputText>
+                            <h:outputText value="#{msg.price}"/>
+                        </f:facet>
+                        <h:graphicImage url="#{line.prix}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{msg.order}"></h:outputText>
                         </f:facet>
                         <h:form>
                         <h:inputText id="inputQte">
                             <f:validator validatorId="orderValidator"></f:validator>
                             <f:attribute name="confirmOrder" value ="#{confirmOrder}"/>
                         </h:inputText><br></br>
-                        <h:commandButton value="Commander" action="faces/panier.xhtml"></h:commandButton><br></br>
+                        <h:commandButton value="#{msg.order}" action="faces/panier.xhtml"></h:commandButton><br></br>
                         <h:message for="inputQte"></h:message>
                         </h:form>
                     </h:column>

@@ -43,7 +43,7 @@ public class InscrManager implements Serializable {
     public String createClient(){
         clientSessionBean.createClient(clientToManage);
         
-        return "Bienvenue sur notre site, " + clientToManage.getUsername();
+        return clientToManage.getUsername();
     }
    
 

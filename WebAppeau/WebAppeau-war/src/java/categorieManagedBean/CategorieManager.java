@@ -39,13 +39,23 @@ public class CategorieManager implements Serializable {
         categorieToManage = new Categorie();
     }
     
-    public List<Categorie> allCategorie(){
+    /*public List<Categorie> allCategorie(){
     return categorieSessionBean.allCategorie();
+    }*/
+    
+    public List<Categorie> allCategorieTrad(String id){
+        int intid;
+        if(id.equals("fr"))
+        {
+            intid = 1;
+        }
+        else
+        {
+            intid = 2;
+        }
+        return categorieSessionBean.allCategorie(intid);
     }
     
-    public String outcome(Categorie cat){
-        categorieToManage = cat;
-        return "showAnimals";
-    }
+ 
     
 }

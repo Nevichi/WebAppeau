@@ -17,7 +17,7 @@ import model.Animal;
 @Local
 public interface AnimalSessionBeanLocal {
 
-    List<Animal> findAnimalByCategory(Categorie id);
+    List<Animal> findAnimalByCategory(Categorie id, int idlang);
 
     List<Animal> allAnimal();
     

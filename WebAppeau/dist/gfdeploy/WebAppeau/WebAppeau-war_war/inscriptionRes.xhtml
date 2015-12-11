@@ -9,8 +9,9 @@
         <ui:composition template="./generalTemplate.xhtml">
 
             <ui:define name="content">
+                <h:outputText value="#{msg.welcomeInscr}"/>
                 <h:outputText value="#{inscrManager.createClient()}"></h:outputText><br></br>
-                <h:outputText value="Vous pouvez dès à présent vous connecter sur votre compte et effectuer des achats !"></h:outputText>                
+                <h:outputText value="#{msg.welcomeInscr2}"></h:outputText>                
             </ui:define>
 
         </ui:composition>

@@ -30,7 +30,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Tradcategorie.findAll", query = "SELECT t FROM Tradcategorie t"),
     @NamedQuery(name = "Tradcategorie.findById", query = "SELECT t FROM Tradcategorie t WHERE t.id = :id"),
-    @NamedQuery(name = "Tradcategorie.findByTradnom", query = "SELECT t FROM Tradcategorie t WHERE t.tradnom = :tradnom")})
+    @NamedQuery(name = "Tradcategorie.findByTradnom", query = "SELECT t FROM Tradcategorie t WHERE t.tradnom = :tradnom"),
+    @NamedQuery(name = "Tradcategorie.getAllTraduction", query = "SELECT t from Tradcategorie t WHERE t.idlangue = :idlang"),
+    @NamedQuery(name = "Tradcategorie.getTraduction", query = "SELECT t from Tradcategorie t WHERE t.idlangue = :idlang AND t.idcategorie = :idcat")})
 public class Tradcategorie implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

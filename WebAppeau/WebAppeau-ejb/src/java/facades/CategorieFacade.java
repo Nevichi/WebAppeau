@@ -6,6 +6,7 @@
 package facades;
 
 import entityPackage.Categorie;
+import entityPackage.Langue;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -33,14 +34,21 @@ public class CategorieFacade extends AbstractFacade<Categorie> implements Catego
     
     
         @Override
-    public List<model.Categorie> allCategorie(){
+    public List<model.Categorie> allCategorie(int idlang){
         int i = 0;
+        Query query = em.createNamedQuery("Tradcategorie.getTraduction");
+        Langue lang = new Langue();
+        lang.setId(idlang);
+        query.setParameter("idlang", lang);
         List<entityPackage.Categorie> catList = findAll();
         List<model.Categorie> resList = new ArrayList<model.Categorie>();
+        entityPackage.Tradcategorie trad = new entityPackage.Tradcategorie();
         while(i<catList.size()){
         model.Categorie cat = new model.Categorie();
+        query.setParameter("idcat", catList.get(i));
+        trad = (entityPackage.Tradcategorie) query.getSingleResult();
         cat.setId(catList.get(i).getId());
-        cat.setNom(catList.get(i).getNom());
+        cat.setNom(trad.getTradnom());
         resList.add(cat);
         i++;
         }

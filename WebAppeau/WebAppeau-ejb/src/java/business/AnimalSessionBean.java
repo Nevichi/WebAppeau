@@ -25,8 +25,8 @@ public class AnimalSessionBean implements AnimalSessionBeanLocal {
     
     
     @Override
-    public List<Animal> findAnimalByCategory(Categorie id) {
-        return animalFacade.animalFromCat(id);
+    public List<Animal> findAnimalByCategory(Categorie id, int idlang) {
+        return animalFacade.animalFromCat(id, idlang);
     }
 
     @Override

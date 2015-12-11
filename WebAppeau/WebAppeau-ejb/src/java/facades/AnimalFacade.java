@@ -6,6 +6,7 @@
 package facades;
 
 import entityPackage.Animal;
+import entityPackage.Langue;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -58,24 +59,31 @@ public class AnimalFacade extends AbstractFacade<Animal> implements AnimalFacade
     
     
             @Override
-    public List<model.Animal> animalFromCat(Categorie id){
-        Query query;
+    public List<model.Animal> animalFromCat(Categorie id, int idlang){
+        Query query, query2;
         query = em.createNamedQuery("Animal.findByCategorie");
+        query2 = em.createNamedQuery("Tradanimal.getAnimalTrad");
         entityPackage.Categorie cat = new entityPackage.Categorie();
         cat.setId(id.getId());
         cat.setNom(id.getNom());
         cat.setAnimalCollection(null);
         query.setParameter("idcat", cat);
+        Langue lang = new Langue();
+        lang.setId(idlang);
+        query2.setParameter("idlang", lang);
         int i = 0;
         List<entityPackage.Animal> anList = query.getResultList();
         List<model.Animal> resList = new ArrayList<model.Animal>();
+        entityPackage.Tradanimal trad = new entityPackage.Tradanimal();
         
         while(i<anList.size()){
         model.Animal an = new model.Animal();
         an.setDatedébutchasse(anList.get(i).getDatedébutchasse());
         an.setDatefinchasse(anList.get(i).getDatefinchasse());
         an.setId(anList.get(i).getId());
-        an.setNom(anList.get(i).getNom());
+        query2.setParameter("idan", anList.get(i));
+        trad = (entityPackage.Tradanimal) query2.getSingleResult();
+        an.setNom(trad.getNom());
         an.setUrlimage(anList.get(i).getUrlimage());
         an.setIdCatToNull(null);
         resList.add(an);

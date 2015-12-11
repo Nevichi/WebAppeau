@@ -31,7 +31,7 @@ public interface AnimalFacadeLocal {
     
     public List<model.Animal> allAnimal();
     
-    public List<model.Animal> animalFromCat(Categorie id);
+    public List<model.Animal> animalFromCat(Categorie id, int idlang);
     
     public model.Animal animalFromId(int id);
 

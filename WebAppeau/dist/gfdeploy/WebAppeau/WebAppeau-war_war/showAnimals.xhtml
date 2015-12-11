@@ -12,7 +12,7 @@
 
             <ui:define name="content">
                 <c:if test="#{not empty param.categorie}">
-                <c:forEach items="#{animalManager.findAnimalFromCategory(param.categorie)}" var="animal">
+                <c:forEach items="#{animalManager.findAnimalFromCategory(param.categorie, animalManager.locale.toString())}" var="animal">
                     <div class="presAppeau"><h:form>
                             <h:link value="#{animal.nom}" outcome="showAppeau.xhtml">
                                 <f:param name="selectedAnimal" value="#{animal.id}"></f:param>
@@ -25,7 +25,7 @@
                 </c:if>
                 
                 <c:if test="#{empty param.categorie}">
-                    <c:forEach items="#{animalManager.findAnimalFromCategory(animalManager.saveCat)}" var="animal">
+                    <c:forEach items="#{animalManager.findAnimalFromCategory(animalManager.saveCat, animalManager.locale.toString())}" var="animal">
                     <div class="presAppeau"><h:form>
                             <h:link value="#{animal.nom}" outcome="showAppeau.xhtml">
                                 <f:param name="selectedAnimal" value="#{animal.id}"></f:param>

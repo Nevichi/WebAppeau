@@ -28,7 +28,7 @@ public interface CategorieFacadeLocal {
 
     List<Categorie> findRange(int[] range);
     
-    public List<model.Categorie> allCategorie();
+    public List<model.Categorie> allCategorie(int idlang);
 
     public model.Categorie findCat(int id);
     

@@ -30,4 +30,6 @@ public interface TradcategorieFacadeLocal {
 
     int count();
     
+    public List<model.Categorie> getAllTradCategorie(int idlang);
+    
 }

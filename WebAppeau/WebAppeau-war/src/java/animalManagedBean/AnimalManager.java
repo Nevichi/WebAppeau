@@ -36,6 +36,7 @@ public class AnimalManager implements Serializable {
     private Animal animalToManage;
     private int saveAnimal;
     private int saveCat;
+    private Locale locale = new Locale("fr");
 
     public Animal getAnimalToManage() {
         return animalToManage;
@@ -60,10 +61,18 @@ public class AnimalManager implements Serializable {
     
     
     
-    public List<Animal> findAnimalFromCategory(int cat){
+    public List<Animal> findAnimalFromCategory(int cat, String id){
         saveCat = cat;
         Categorie category = categorieSessionBean.getCategorieFromId(saveCat);
-    return animalSessionBean.findAnimalByCategory(category);
+            int intid;
+    if(id.equals("fr")){
+        intid = 1;
+    }
+    else
+    {
+        intid = 2;
+    }
+    return animalSessionBean.findAnimalByCategory(category, intid);
     }
     
     public List<Animal> allAnimal(){
@@ -81,6 +90,7 @@ public class AnimalManager implements Serializable {
 
       public List<Appeau> appeauFromAnimal(int an){
     saveAnimal=an;
+
     return appeauSessionBean.appeauFromAnimal(animalSessionBean.animalFromId(saveAnimal));
     }
 
@@ -93,7 +103,6 @@ public class AnimalManager implements Serializable {
     }
       
     
-    private Locale locale = new Locale("fr");
     
     public Locale getLocale(){return locale;}
     public void setToEnglish()
