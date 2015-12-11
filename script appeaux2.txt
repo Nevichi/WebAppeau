@@ -1,0 +1,218 @@
+Drop table Commande;
+Drop table Contenant;
+Drop table Client;
+Drop table Appeau;
+Drop table Animal;
+Drop table Categorie;
+Drop table Langue;
+Drop table TradCategorie;
+Drop table TradAnimal;
+
+create table Categorie
+(
+id integer generated always as identity (start with 1, increment by 1) constraint idcat_pk primary key,
+nom varchar(256)
+);
+
+
+create table Langue
+(
+id integer generated always as identity (start with 1, increment by 1) constraint idlang_pk primary key,
+nom varchar(256)
+);
+
+create table TradCategorie
+(
+id integer generated always as identity (start with 1, increment by 1) constraint idtradcat_pk primary key,
+tradNom varchar(256),
+IDCategorie integer constraint IDCc_fk references Categorie(id),
+IDLangue integer constraint IDLc_fk references Langue(id)
+);
+
+
+create table Animal
+(
+id integer generated always as identity (start with 1, increment by 1) constraint idani_pk primary key,
+nom varchar(256),
+dateDébutChasse date,
+dateFinChasse date,
+urlImage varchar(256),
+IDCategorie integer constraint IDC_fk references Categorie(id)
+);
+
+create table TradAnimal
+(
+id integer generated always as identity (start with 1, increment by 1) constraint idtradani_pk primary key,
+nom varchar(256),
+IDAnimal integer constraint IDAa_fk references Animal(id),
+IDLangue integer constraint IDLa_fk references Langue(id)
+);
+
+
+create table Appeau
+(
+id integer generated always as identity (start with 1, increment by 1) constraint idapp_pk primary key,
+prix numeric(6,2),
+nbStock integer,
+nom varchar(256),
+urlImage varchar(256),
+IDAnimal integer constraint IDA_fk references Animal(id)
+);
+
+
+create table Contenant
+(
+id integer generated always as identity (start with 1, increment by 1) constraint idcont_pk primary key,
+prixAppeaux numeric(8,2),
+quantité integer
+);
+
+create table Client
+(
+id integer generated always as identity (start with 1, increment by 1) constraint idcli_pk primary key,
+email varchar(100),
+adresseDomicile varchar(256),
+numTel integer,
+login varchar (25),
+password varchar(512)
+);
+
+
+create table Commande
+(
+id integer generated always as identity (start with 1, increment by 1) constraint idcmd_pk primary key,
+dateCommande date,
+adresseLivraison varchar(256),
+IDCont integer constraint IDCont_fk references Contenant(id),
+IDClient integer constraint IDClient_fk references Client(id)
+);
+
+
+insert into Langue(nom) values ('Francais');
+insert into Langue(nom) values ('Anglais');
+
+
+insert into Categorie(nom) values ('Marais');
+insert into TradCategorie(Tradnom, IDCategorie, IDLangue) values ('Marais', 1, 1);
+insert into TradCategorie(Tradnom, IDCategorie, IDLangue) values ('Swamp', 1, 2);
+insert into Categorie(nom) values ('Plaines');
+insert into TradCategorie(Tradnom, IDCategorie, IDLangue) values ('Plaines', 2, 1);
+insert into TradCategorie(Tradnom, IDCategorie, IDLangue) values ('Plains', 2, 2);
+insert into Categorie(nom) values ('Mamiferres');
+insert into TradCategorie(Tradnom, IDCategorie, IDLangue) values ('Mammifère', 3, 1);
+insert into TradCategorie(Tradnom, IDCategorie, IDLangue) values ('Mamals', 3, 2);
+
+insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Becassine des Marais', date('15.10.2015'), date('31.12.2015'), './images/animaux/becassinemarais.jpg',1);
+insert into Appeau(prix, nbStock, nom, urlImage, IDAnimal) values (000009.90, 21, 'Appeau Becassine des Marais', './images/appeaux/marais/becassinedesmarais.jpg',1);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Becassine des Marais', 1, 1);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Common Snipe', 1, 2);
+insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Canard Colvert', date('15.08.2015'), date('31.01.2016'), './images/animaux/canardcolvert.jpg',1);
+insert into Appeau(prix, nbStock, nom, urlImage, IDAnimal) values (000029.90, 10, 'Appeau Canard Colvert', './images/appeaux/marais/canardcolvert1.jpg',2);
+insert into Appeau(prix, nbStock, nom, urlImage, IDAnimal) values (000014.90, 3, 'Appeau Canard Colvert', './images/appeaux/marais/canardcolvert2.jpg',2);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Canard Colvert', 2, 1);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Mallard', 2, 2);
+insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Canard Siffleur', date('01.09.2015'), date('31.01.2016'), './images/animaux/canardsiffleur.jpg',1);
+insert into Appeau(prix, nbStock, nom, urlImage, IDAnimal) values (000009.90, 89, 'Appeau Canard Siffleur', './images/appeaux/marais/canardsiffleur.jpg',3);
+insert into Appeau(prix, nbStock, nom, urlImage, IDAnimal) values (000009.90, 47, 'Appeau Canard Siffleur', './images/appeaux/marais/canardsiffleur2.jpg',3);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Canard Siffleur', 3, 1);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Eurasian Wigeon', 3, 2);
+insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Oie cendrée', date('01.09.2015'), date('31.01.2016'), './images/animaux/oiecendree.jpg',1);
+insert into Appeau(prix, nbStock, nom, urlImage, IDAnimal) values (000024.90, 21, 'Appeau Oie Cendrée', './images/appeaux/marais/oiecendrée.jpg',4);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Oie cendrée', 4, 1);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Greylag Goose', 4, 2);
+insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Vanneau Huppé', date('06.05.2015'), date('06.05.2015'), './images/animaux/vanneauhuppe.jpg',1);
+insert into Appeau(prix, nbStock, nom, urlImage, IDAnimal) values (000019.90, 21, 'Appeau Vanneau Huppe', './images/appeaux/marais/vanneauhuppe.jpg',5);
+insert into Appeau(prix, nbStock, nom, urlImage, IDAnimal) values (000009.90, 21, 'Appeau Vanneau Huppe', './images/appeaux/marais/vanneauhuppe2.jpg',5);
+insert into Appeau(prix, nbStock, nom, urlImage, IDAnimal) values (000009.90, 21, 'Appeau Vanneau Huppe', './images/appeaux/marais/vanneauhuppe3.jpg',5);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Vanneau huppé', 5, 1);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Northern Lapwing', 5, 2);
+
+insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Alouette des champs', date('01.09.2015'), date('31.01.2016'), './images/animaux/allouettechamps.jpg',2);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Alouette des champs', 6, 1);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Eurasian Skylark', 6, 2);
+insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Bergeronnette', date('01.09.2015'), date('31.01.2016'), './images/animaux/bergeronnette.jpg',2);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Bergeronnette', 7, 1);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Wagtail', 7, 2);
+insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Chardonneret', date('01.09.2015'), date('31.01.2016'), './images/animaux/chardonneret.jpg',2);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Chardonneret', 8, 1);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('European Goldfinch', 8, 2);
+insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Chouette chevêche', date('01.09.2015'), date('31.01.2016'), './images/animaux/chouettecheveche.jpg',2);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Chouette Chevêche', 9, 1);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Little Owl', 9, 2);
+insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Chouette hulotte', date('01.09.2015'), date('31.01.2016'), './images/animaux/chouettehulotte.jpg',2);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Chouette Hulotte', 10, 1);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Tawny Owl', 10, 2);
+insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Coucou gris', date('01.09.2015'), date('31.01.2016'), './images/animaux/coucougris.jpg',2);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Coucou Gris', 11, 1);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Common Cuckoo', 11, 2);
+insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Geai des Chênes', date('01.09.2015'), date('31.01.2016'), './images/animaux/geaichenes.jpg',2);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Geai Des Chênes', 12, 1);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Eurasian Jay', 12, 2);
+insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Grive Litorne', date('01.09.2015'), date('31.01.2016'), './images/animaux/grivelitorne.jpg',2);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Grive Litorne', 13, 1);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Fieldfare', 13, 2);
+insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Grive Mauvis', date('01.09.2015'), date('31.01.2016'), './images/animaux/grivemauvis.jpg',2);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Grive Mauvis', 14, 1);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Redwing', 14, 2);
+insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Grive Musicienne', date('01.09.2015'), date('31.01.2016'), './images/animaux/grivemusicienne.jpg',2);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Grive Musicienne', 15, 1);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Song Thrush', 15, 2);
+insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Martinet', date('01.09.2015'), date('31.01.2016'), './images/animaux/martinet.jpg',2);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Martinet', 16, 1);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Common Swift', 16, 2);
+insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Merle noir', date('01.09.2015'), date('31.01.2016'), './images/animaux/merlenoir.jpg',2);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Merle Noir', 17, 1);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Common Blackbird', 17, 2);
+insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Mésange Bleu', date('01.09.2015'), date('31.01.2016'), './images/animaux/mesangebleu.jpg',2);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Mésange Bleue', 18, 1);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Eurasian Blue Tit', 18, 2);
+insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Moineau', date('01.09.2015'), date('31.01.2016'), './images/animaux/moineau.jpg',2);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Moineau', 19, 1);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Sparrow', 19, 2);
+insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Palombe Ramier', date('01.09.2015'), date('31.01.2016'), './images/animaux/palomberamier.jpg',2);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Palombe Ramier', 20, 1);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Common Wood Pigeon', 20, 2);
+insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Perdrix Rouge', date('01.09.2015'), date('30.11.2015'), './images/animaux/perdrixrouge.jpg',2);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Perdrix Rouge', 21, 1);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Red-legged Partridge', 21, 2);
+insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Pie Bavarde', date('01.09.2015'), date('31.01.2016'), './images/animaux/piebavarde.jpg',2);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Pie Bavarde', 22, 1);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Eurasian Magpie', 22, 2);
+insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Poule Domestique', date('01.10.2015'), date('31.12.2015'), './images/animaux/poule.jpg',2);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Poule Domestique', 23, 1);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Domestic Chicken', 23, 2);
+insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Rossignol', date('01.09.2015'), date('31.01.2016'), './images/animaux/rossignol.jpg',2);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Rossignol', 24, 1);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Common Nightingale', 24, 2);
+insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Rouge Gorge', date('01.09.2015'), date('31.01.2016'), './images/animaux/rougegorge.jpg',2);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Rouge Gorge', 25, 1);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('European Robin', 25, 2);
+insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Tourterelle de bois', date('01.09.2015'), date('31.01.2016'), './images/animaux/tourterelledesbois.jpg',2);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Tourterelle Des Bois', 26, 1);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('European Turtle Dove', 26, 2);
+insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Tourterelle Turque', date('01.09.2015'), date('31.01.2016'), './images/animaux/tourterelleturque.jpg',2);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Tourterelle Turque', 27, 1);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Eurasian Collared Dove', 27, 2);
+insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Verdier', date('01.09.2015'), date('31.01.2016'), './images/animaux/verdier.jpg',2);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Verdier', 28, 1);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('European Greenfinch', 28, 2);
+
+insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Chevreuil', date('01.10.2015'), date('31.12.2015'), './images/animaux/chevreuil.jpg', 3);
+insert into Appeau(prix, nbStock, nom, urlImage, IDAnimal) values (000014.90, 04, 'Appeau Chevreuil', './images/appeaux/mammifere/chevreuil.jpg',29);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Chevreuil', 29, 1);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Roe Deer', 29, 2);
+insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Cochon', date('01.09.2015'), date('31.01.2016'), './images/animaux/cochon.jpg', 3);
+insert into Appeau(prix, nbStock, nom, urlImage, IDAnimal) values (000024.90, 11, 'Appeau Cochon', './images/appeaux/mammifere/cochon.jpg',30);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Cochon', 30, 1);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Pig', 30, 2);
+insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Marmotte', date('01.09.2015'), date('31.01.2016'), './images/animaux/marmotte.jpg', 3);
+insert into Appeau(prix, nbStock, nom, urlImage, IDAnimal) values (000009.90, 41, 'Appeau Marmotte', './images/appeaux/mammifere/marmotte.jpg',31);
+insert into Appeau(prix, nbStock, nom, urlImage, IDAnimal) values (000009.90, 15, 'Appeau Marmotte', './images/appeaux/mammifere/marmotte2.jpg',31);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Marmotte', 31, 1);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Marmot', 31, 2);
+insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Renard', date('01.01.2015'), date('31.12.2015'), './images/animaux/renard.jpg', 3);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Renard', 32, 1);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Fox', 32, 2);
+insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Sanglier', date('01.08.2015'), date('31.12.2015'), './images/animaux/sanglier.jpg', 3);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Sanglier', 33, 1);
+insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Wild Boar', 33, 2);

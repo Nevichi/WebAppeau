@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <f:loadBundle basename="language.lang" var="msg"/>
+
+    <f:view locale="#{animalManager.locale}">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="/css/default.css"/>
+        <h:outputStylesheet name="/css/cssLayout.css"/>
+        <title>Facelets Template</title>
+            <script type="text/javascript">
+        var cont;
+        var butUp;
+        var butDown;
+        
+        function init(){
+            butUp = document.getElementById("buttonUp");
+            butDown = document.getElementById("buttonDown");
+            cont = document.getElementById("compteur");
+        }
+        
+        function add(){
+            document.getElementById("j_idt32:compteur").innerHTML++;
+        }
+        
+        function less(){
+            document.getElementById("j_idt32:compteur").innerHTML--;
+        }
+        
+        </script>
+    </h:head>
+
+    <h:body>
+
+        <div id="top">
+            <ui:insert name="top">
+                <div>
+                    <div id="mainTitle"><h1><h:link value="#{msg.appeau}" outcome="index.xhtml"></h:link></h1></div>
+                    <div id="imageHead"><h:graphicImage url="./images/header/canard.png"></h:graphicImage></div>
+                    <div id="loginZone">
+                        <c:if test="#{clientManager.isLogged==false}"><h:form>
+                            <h:outputLabel value="Nom d'utilisateur: " for="userName"></h:outputLabel><br></br>
+                            <h:inputText id="userName" required="true" requiredMessage=" Ce champ est obligatoire" value="#{clientManager.client.username}"></h:inputText>
+                            <h:message for="userName"></h:message><br></br>
+                            <h:outputLabel value="Mot de passe: " for="password"></h:outputLabel><br></br>
+                            <h:inputSecret id="password" required="true" requiredMessage=" Ce champs est obligatoire" value="#{clientManager.client.password}"></h:inputSecret>
+                            
+                            <h:message for="password"></h:message><br></br>
+                            <h:commandButton value="Login" action="#{clientManager.validateUsernamePassword()}"/>
+                            
+                        </h:form></c:if>
+                        <c:if test="#{clientManager.isLogged==true}"><h:form>
+                                <h:outputText value="Welcome, #{clientManager.logged}"></h:outputText><br></br>
+                                    <h:commandButton value="Loggout" action="#{clientManager.logout()}"/>
+                        </h:form></c:if>
+                    </div>
+                </div>
+            <div id="mainmenu">
+            <ul id="menuBar">
+                <c:forEach items="#{categorieManager.allCategorie()}" var="cat">
+                    <li class="menuList"><h:form>
+                            <h:link value="#{cat.nom}" outcome="showAnimals.xhtml">
+                                <f:param name="categorie" value="#{cat.id}"></f:param>
+                            </h:link>
+                                
+                    </h:form></li>
+                </c:forEach>
+                <c:if test="#{clientManager.isLogged}">
+                    <li class="menuList"><h:link value="#{msg.panier}" outcome="panier.xhtml"></h:link></li>
+                </c:if>
+                <li class="menuList"><h:link value="#{msg.inscr}" outcome="inscription.xhtml"></h:link></li>
+            </ul>
+            </div>
+            
+            </ui:insert>
+        </div>
+
+        <div id="content" class="center_content">
+            <ui:insert name="content">Template</ui:insert>
+        </div>
+
+        <div id="bottom">
+            <ui:insert name="bottom">
+                <div id="languageDisplay">
+                    <h:form>
+                    <h:commandButton action="#{internationalizationMB.setToEnglish}" image="./images/header/UKFlag.png"></h:commandButton>
+                    <h:commandButton action="#{internationalizationMB.setToFrench}" image="./images/header/frenchFlag.jpg"></h:commandButton>
+                    </h:form>
+                </div>
+                
+            </ui:insert>
+        </div>
+
+    </h:body>
+</f:view>
+</html>

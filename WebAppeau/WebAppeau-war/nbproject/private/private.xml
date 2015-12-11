@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/Quentin/Documents/NetBeansProjects/WebAppeau/WebAppeau-war/web/resources/css/cssLayout.css</file>
+            <file>file:/C:/Users/Quentin/Documents/NetBeansProjects/WebAppeau/WebAppeau-war/web/showAnimals.xhtml</file>
+            <file>file:/C:/Users/Quentin/Documents/NetBeansProjects/WebAppeau/WebAppeau-war/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/Quentin/Documents/NetBeansProjects/WebAppeau/WebAppeau-war/web/plaine.xhtml</file>
+            <file>file:/C:/Users/Quentin/Documents/NetBeansProjects/WebAppeau/WebAppeau-war/web/index.xhtml</file>
+            <file>file:/C:/Users/Quentin/Documents/NetBeansProjects/WebAppeau/WebAppeau-war/src/java/categorieManagedBean/CategorieManager.java</file>
+            <file>file:/C:/Users/Quentin/Documents/NetBeansProjects/WebAppeau/WebAppeau-war/src/java/clientManagedBean/clientManager.java</file>
+            <file>file:/C:/Users/Quentin/Documents/NetBeansProjects/WebAppeau/WebAppeau-war/web/mamiferes.xhtml</file>
+            <file>file:/C:/Users/Quentin/Documents/NetBeansProjects/WebAppeau/WebAppeau-war/src/java/Validators/passwordValidator.java</file>
+            <file>file:/C:/Users/Quentin/Documents/NetBeansProjects/WebAppeau/WebAppeau-war/src/conf/MANIFEST.MF</file>
+            <file>file:/C:/Users/Quentin/Documents/NetBeansProjects/WebAppeau/WebAppeau-war/web/inscription.xhtml</file>
+            <file>file:/C:/Users/Quentin/Documents/NetBeansProjects/WebAppeau/WebAppeau-war/web/showAppeau.xhtml</file>
+            <file>file:/C:/Users/Quentin/Documents/NetBeansProjects/WebAppeau/WebAppeau-war/web/marais.xhtml</file>
+            <file>file:/C:/Users/Quentin/Documents/NetBeansProjects/WebAppeau/WebAppeau-war/src/java/animalManagedBean/AnimalManager.java</file>
+            <file>file:/C:/Users/Quentin/Documents/NetBeansProjects/WebAppeau/WebAppeau-war/src/java/inscriptionManagedBean/InscrManager.java</file>
+            <file>file:/C:/Users/Quentin/Documents/NetBeansProjects/WebAppeau/WebAppeau-war/src/java/appeauManagedBean/AppManager.java</file>
+            <file>file:/C:/Users/Quentin/Documents/NetBeansProjects/WebAppeau/WebAppeau-war/src/java/Validators/UserValidator.java</file>
+            <file>file:/C:/Users/Quentin/Documents/NetBeansProjects/WebAppeau/WebAppeau-war/web/generalTemplate.xhtml</file>
+            <file>file:/C:/Users/Quentin/Documents/NetBeansProjects/WebAppeau/WebAppeau-war/src/java/Validators/emailValidator.java</file>
+            <file>file:/C:/Users/Quentin/Documents/NetBeansProjects/WebAppeau/WebAppeau-war/src/java/language/InternationalizationMB.java</file>
+            <file>file:/C:/Users/Quentin/Documents/NetBeansProjects/WebAppeau/WebAppeau-war/src/java/Validators/OrderValidator.java</file>
+            <file>file:/C:/Users/Quentin/Documents/NetBeansProjects/WebAppeau/WebAppeau-war/web/inscriptionRes.xhtml</file>
+            <file>file:/C:/Users/Quentin/Documents/NetBeansProjects/WebAppeau/WebAppeau-war/web/resources/css/default.css</file>
+            <file>file:/C:/Users/Quentin/Documents/NetBeansProjects/WebAppeau/WebAppeau-war/web/panier.xhtml</file>
+        </group>
+    </open-files>
+</project-private>

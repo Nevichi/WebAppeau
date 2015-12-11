@@ -1,0 +1,87 @@
+
+#top {
+    background-image: url("camo.jpeg");
+    border: 3px outset green;
+    border-radius: 5px;
+    background-color: #0099FF;
+    text-shadow: #000000 1px 1px;
+    padding: 10px;
+    margin: 0px 0px 10px 0px;
+}
+
+#bottom {
+    background-image: url("camo.jpeg");
+    border: 3px outset green;
+    border-radius: 5px;
+    position: relative;
+    background-color: #c2dfef;
+    padding: 5px;
+    margin: 10px 0px 0px 0px;
+}
+
+#left {
+    float: left;
+    background-color: #ece3a5;
+    padding: 5px;
+    width: 150px;
+}
+
+#right {
+    float: right;
+    background-color: #ece3a5;
+    padding: 5px;
+    width: 150px;
+}
+
+.center_content {
+    border: 3px outset sandybrown;
+    font-size: 20px;
+    color: ivory;
+    border-radius: 5px;
+    position: relative;
+    background-color: #dddddd;
+    padding: 5px;
+    color: red;
+}
+
+.left_content {
+    background-color: #dddddd;
+    padding: 5px;
+    margin-left: 170px;
+}
+
+.right_content {
+    background-color: #dddddd;
+    padding: 5px;
+    margin: 0px 170px 0px 170px;
+}
+
+#top a:link, #top a:visited {
+  color: white;
+  font-weight : bold;
+  text-decoration: none;
+}
+
+#top a:link:hover, #top a:visited:hover  {
+  color: black;
+  font-weight : bold;
+  text-decoration : underline;
+}
+
+
+#formInscr
+{
+    text-align: center;
+    
+}
+
+#imageHead
+{
+ text-align: right;
+}
+
+#mainTitle
+{
+    width: 50%;
+    float : left;
+}

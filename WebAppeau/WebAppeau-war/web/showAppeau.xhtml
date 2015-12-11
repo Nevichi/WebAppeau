@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+
+    
+    
+    <body>
+
+        <ui:composition template="./generalTemplate.xhtml">
+
+            <ui:define name="content">
+                <c:if test="#{not empty param.selectedAnimal}">
+                <h:dataTable value="#{animalManager.appeauFromAnimal(param.selectedAnimal)}" var="line" border="1">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Image"/>
+                        </f:facet>
+                        <h:graphicImage url="#{line.urlImage}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Appeau"></h:outputText>
+                        </f:facet>
+                        <h:outputText value="#{line.nom}"></h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Stock"></h:outputText>
+                        </f:facet>
+                        <h:outputText value="#{line.nbStock}" binding="#{confirmOrder}"></h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Quantitée voulue"></h:outputText>
+                        </f:facet>
+                        <h:form>
+                        <h:inputText id="inputQte">
+                            <f:validator validatorId="orderValidator"></f:validator>
+                            <f:attribute name="confirmOrder" value ="#{confirmOrder}"/>
+                        </h:inputText><br></br>
+                        <h:commandButton value="Commander" action="faces/panier.xhtml"></h:commandButton><br></br>
+                        <h:message for="inputQte"></h:message>
+                        </h:form>
+                    </h:column>
+                </h:dataTable>
+                </c:if>
+                
+                
+                <c:if test="#{empty param.selectedAnimal}">
+                    <h:dataTable value="#{animalManager.appeauFromAnimal(animalManager.saveAnimal)}" var="line" border="1">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Image"/>
+                        </f:facet>
+                        <h:graphicImage url="#{line.urlImage}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Appeau"></h:outputText>
+                        </f:facet>
+                        <h:outputText value="#{line.nom}"></h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Stock"></h:outputText>
+                        </f:facet>
+                        <h:outputText value="#{line.nbStock}" binding="#{confirmOrder}"></h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Quantitée voulue"></h:outputText>
+                        </f:facet>
+                        <h:form>
+                        <h:inputText id="inputQte">
+                            <f:validator validatorId="orderValidator"></f:validator>
+                            <f:attribute name="confirmOrder" value ="#{confirmOrder}"/>
+                        </h:inputText><br></br>
+                        <h:commandButton value="Commander" action="faces/panier.xhtml"></h:commandButton><br></br>
+                        <h:message for="inputQte"></h:message>
+                        </h:form>
+                    </h:column>
+                </h:dataTable>
+                </c:if>
+                
+                
+                
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

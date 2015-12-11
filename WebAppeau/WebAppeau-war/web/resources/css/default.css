@@ -1,0 +1,73 @@
+body {
+    background-color: green;
+    font-size: 12px;
+    font-family: Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    color: red;  
+    margin: 10px;
+}
+
+h1 {
+    font-family: Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    border-bottom: 1px solid #AFAFAF; 
+    font-size:  40px;
+    font-weight: bold;
+    margin: 0px;
+    padding: 0px;
+    color: #D20005;
+    
+    display: inline-block;
+}
+
+a:link, a:visited {
+  color: #045491;
+  font-weight : bold;
+  text-decoration: none;
+}
+
+a:link:hover, a:visited:hover  {
+  color: #045491;
+  font-weight : bold;
+  text-decoration : underline;
+}
+
+ul, li {
+
+}
+
+#menuBar{
+    width: 100%;
+    font-size: 25px;
+}
+
+.presAppeau{
+    color: brown;
+    border: 2px outset green;
+    width: auto;
+    display: inline-block;
+}
+
+#appeauList{
+    text-align: center;
+}
+
+#showImgAppeau{
+    list-style-type: none;
+    display: inline;
+}
+
+.menuList
+{
+    
+    margin-right: 30px;
+    margin-left: 30px;
+    list-style-type: none;
+    display: inline-block;    
+}
+
+.showAppeau
+{
+    margin-right: 30px;
+    list-style-type: none;
+    display: inline-block;
+    color: red;
+}

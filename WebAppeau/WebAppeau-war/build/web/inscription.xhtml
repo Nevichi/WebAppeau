@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./generalTemplate.xhtml">
+
+            <ui:define name="content">
+                <h:form id="formInscr">
+                    <h:outputLabel value="Nom d'utilisateur: " for="userName"></h:outputLabel>
+                    <h:inputText id="userName" required="true" requiredMessage=" Ce champ est obligatoire" value="#{inscrManager.clientToManage.username}">
+                    <f:validator validatorId="userValidator"></f:validator>
+                    </h:inputText>
+                    <h:message for="userName"></h:message><br></br>
+                    
+                    <h:outputLabel value="Mot de passe: " for="password"></h:outputLabel>
+                    <h:inputSecret id="password" required="true" requiredMessage=" Le mot de passe doit contenir 8 caractères" value="#{inscrManager.clientToManage.password}">
+                        <f:validator validatorId="passwordValidator"></f:validator>
+                        <f:attribute name="confirmPassword" value ="#{confirmPassword}"/>
+                        <f:validateLength minimum="8"/></h:inputSecret>
+                    <h:message for="password"></h:message><br></br>
+                    
+                    <h:outputLabel value="Répetez le mot de passe: " for="passwordConf"></h:outputLabel>
+                    <h:inputSecret id="passwordConf" required="true" requiredMessage=" Ce champ est obligatoire" binding="#{confirmPassword}">
+                    </h:inputSecret>
+                    <h:message for="passwordConf"></h:message><br></br>
+                    
+                    <h:outputLabel value="Adresse mail: " for="email"></h:outputLabel>
+                    <h:inputText id="email" required="true" requiredMessage=" Ce champ est obligatoire" value="#{inscrManager.clientToManage.email}">
+                        <f:validator validatorId="emailValidator"></f:validator>
+                        <f:attribute name="confirmEmail" value ="#{confirmEmail}"/>
+                    </h:inputText>
+                    <h:message for="email"></h:message><br></br>
+                    
+                    <h:outputLabel value="Répetez Adresse mail: " for="emailConf"></h:outputLabel>
+                    <h:inputText id="emailConf" required="true" requiredMessage=" Ce champ est obligatoire" binding="#{confirmEmail}"></h:inputText>
+                    <h:message for="emailConf"></h:message><br></br>
+                    
+                    <h:outputLabel value="Adresse: " for="adresse"></h:outputLabel>
+                    <h:inputText id="adresse" required="true" requiredMessage=" Ce champ est obligatoire" value="#{inscrManager.clientToManage.adresse}"></h:inputText>
+                    <h:message for="adresse"></h:message><br></br>
+                    
+                    <h:outputLabel value="Ville: " for="ville"></h:outputLabel>
+                    <h:inputText id="ville" required="true" requiredMessage=" Ce champ est obligatoire" value="#{inscrManager.clientToManage.ville}"></h:inputText>
+                    <h:message for="ville"></h:message><br></br>
+                    
+                    <h:outputLabel value="Code Postal: " for="cpostal"></h:outputLabel>
+                    <h:inputText id="cpostal" required="true" validatorMessage=" Le code postal doit faire 4 chiffres" value="#{inscrManager.clientToManage.cpostal}">
+                        <f:validateDoubleRange minimum="1000" maximum="9999"/></h:inputText>
+                    <h:message for="cpostal"></h:message><br></br>
+                    
+                    <h:outputLabel value="Numéro de téléphone: " for="numTel"></h:outputLabel>
+                    <h:inputText id="numTel" required="true" validatorMessage=" Le numéro de téléphone doit être valide" value="#{inscrManager.clientToManage.numTel}">
+                        <f:validateDoubleRange minimum="100000000" maximum="999999999"/></h:inputText>
+                    <h:message for="numTel"></h:message><br></br>
+                    
+                    
+                
+                <br></br><h:commandButton value ="suivant" action="faces/inscriptionRes.xhtml"/>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
