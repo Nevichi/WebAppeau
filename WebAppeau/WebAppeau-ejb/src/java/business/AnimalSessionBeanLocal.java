@@ -21,6 +21,8 @@ public interface AnimalSessionBeanLocal {
 
     List<Animal> allAnimal();
     
+    public List<Animal> search(String item, int idlang);
+    
     public Animal animalFromId(int id);
     
 }

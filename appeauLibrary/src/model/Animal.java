@@ -18,6 +18,7 @@ public class Animal {
     private Date datefinchasse;
     private String urlimage;
     private Categorie idcategorie;
+    private boolean isHunted;
 
     
     
@@ -84,5 +85,16 @@ public class Animal {
     
     public void setIdCatToNull(Categorie cat){
     this.idcategorie = cat;}
+
+    public boolean isIsHunted() {
+        return isHunted;
+    }
+
+    public void setIsHunted(boolean isHunted) {
+        this.isHunted = isHunted;
+    }
+    
+    
+    
     
 }

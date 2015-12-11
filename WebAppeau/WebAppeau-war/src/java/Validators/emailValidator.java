@@ -33,5 +33,9 @@ public class emailValidator implements Validator {
             uiInputConfirmPassword.setValid(false);
             throw new ValidatorException(new FacesMessage(" Le mail doit être le même"));
         }
+        if (!(entry.matches("([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)"))){
+            uiInputConfirmPassword.setValid(false);
+            throw new ValidatorException(new FacesMessage(" Le mail doit être valide"));
+        }
     }
 }

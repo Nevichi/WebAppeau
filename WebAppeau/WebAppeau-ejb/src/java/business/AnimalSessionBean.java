@@ -39,6 +39,9 @@ public class AnimalSessionBean implements AnimalSessionBeanLocal {
         return animalFacade.allAnimal();
     }
     
+    public List<Animal> search(String item, int idlang){
+        return animalFacade.search(item, idlang);
+    }
     
     
 }

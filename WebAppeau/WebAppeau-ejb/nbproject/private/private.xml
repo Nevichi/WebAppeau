@@ -3,14 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/business/CategorieSessionBean.java</file>
+            <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/business/AnimalSessionBeanLocal.java</file>
+            <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/facades/CategorieFacadeLocal.java</file>
+            <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/entityPackage/Tradanimal.java</file>
             <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/facades/TradcategorieFacade.java</file>
             <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/facades/TradcategorieFacadeLocal.java</file>
             <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/business/AnimalSessionBean.java</file>
-            <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/entityPackage/Categorie.java</file>
+            <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/facades/AnimalFacadeLocal.java</file>
             <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/entityPackage/Tradcategorie.java</file>
-            <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/business/CategorieSessionBeanLocal.java</file>
             <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/facades/CategorieFacade.java</file>
+            <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/business/CategorieSessionBean.java</file>
+            <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/facades/AnimalFacade.java</file>
+            <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/entityPackage/Categorie.java</file>
+            <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/business/CategorieSessionBeanLocal.java</file>
+            <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/entityPackage/Animal.java</file>
         </group>
     </open-files>
 </project-private>

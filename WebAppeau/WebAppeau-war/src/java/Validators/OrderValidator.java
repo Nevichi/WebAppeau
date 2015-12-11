@@ -28,6 +28,7 @@ public class OrderValidator implements Validator {
         UIOutput uiInputConfirmOrder = (UIOutput) component.getAttributes().get("confirmOrder");
         String confirmOrder = uiInputConfirmOrder.getValue().toString();
         int confInt = Integer.parseInt(confirmOrder);
+        
         if(entry <= 0){
             throw new ValidatorException(new FacesMessage(" Vous devez entrer un nombre positif !"));
         }

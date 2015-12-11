@@ -37,6 +37,7 @@ public class AnimalManager implements Serializable {
     private int saveAnimal;
     private int saveCat;
     private Locale locale = new Locale("fr");
+    private String itemSearch;
 
     public Animal getAnimalToManage() {
         return animalToManage;
@@ -51,6 +52,17 @@ public class AnimalManager implements Serializable {
         animalToManage = new Animal();
     }
 
+    public String getItemSearch() {
+        return itemSearch;
+    }
+
+    public void setItemSearch(String itemSearch) {
+        this.itemSearch = itemSearch;
+    }
+
+    
+    
+    
     public int getSaveCat() {
         return saveCat;
     }
@@ -64,7 +76,7 @@ public class AnimalManager implements Serializable {
     public List<Animal> findAnimalFromCategory(int cat, String id){
         saveCat = cat;
         Categorie category = categorieSessionBean.getCategorieFromId(saveCat);
-            int intid;
+        int intid;
     if(id.equals("fr")){
         intid = 1;
     }
@@ -115,5 +127,25 @@ public class AnimalManager implements Serializable {
         locale = new Locale("fr");
     }
       
+    public String catOutcome(int catId){
+        saveCat = catId;
+        return "showAnimals.xhtml";
+    }
+    
+    
+    public List<Animal> search(String id){
+    int intid;
+    if(id.equals("fr")){
+        intid = 1;
+    }
+    else
+    {
+        intid = 2;
+    }
+    String item = itemSearch.substring(0,1).toUpperCase() + itemSearch.substring(1);
+    
+    return animalSessionBean.search(item, intid);
+    }
+    
     
 }

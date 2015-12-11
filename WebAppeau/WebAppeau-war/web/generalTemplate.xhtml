@@ -42,6 +42,16 @@
                                     <h:commandButton value="#{msg.loggout}" action="#{clientManager.logout()}"/>
                         </h:form></c:if>
                     </div>
+                    
+                    <div>
+                        <h:form>
+                        <h:outputLabel value="#{msg.searchLabel}"/><br></br>
+                        <h:inputText id="search" value="#{animalManager.itemSearch}"></h:inputText><br></br>
+                        <h:commandButton value="#{msg.search}" action="searchResult.xhtml"></h:commandButton>
+                        </h:form>
+                    </div>
+                    
+                    
                 </div>
             <div id="mainmenu">
             <ul id="menuBar">

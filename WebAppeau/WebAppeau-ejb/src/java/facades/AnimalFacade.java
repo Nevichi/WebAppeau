@@ -8,6 +8,8 @@ package facades;
 import entityPackage.Animal;
 import entityPackage.Langue;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -77,17 +79,26 @@ public class AnimalFacade extends AbstractFacade<Animal> implements AnimalFacade
         entityPackage.Tradanimal trad = new entityPackage.Tradanimal();
         
         while(i<anList.size()){
-        model.Animal an = new model.Animal();
-        an.setDatedébutchasse(anList.get(i).getDatedébutchasse());
-        an.setDatefinchasse(anList.get(i).getDatefinchasse());
-        an.setId(anList.get(i).getId());
-        query2.setParameter("idan", anList.get(i));
-        trad = (entityPackage.Tradanimal) query2.getSingleResult();
-        an.setNom(trad.getNom());
-        an.setUrlimage(anList.get(i).getUrlimage());
-        an.setIdCatToNull(null);
-        resList.add(an);
-        i++;
+            model.Animal an = new model.Animal();
+            an.setDatedébutchasse(anList.get(i).getDatedébutchasse());
+            an.setDatefinchasse(anList.get(i).getDatefinchasse());
+            an.setId(anList.get(i).getId());
+            query2.setParameter("idan", anList.get(i));
+            trad = (entityPackage.Tradanimal) query2.getSingleResult();
+            an.setNom(trad.getNom());
+            an.setUrlimage(anList.get(i).getUrlimage());
+            an.setIdCatToNull(null);
+            Date date = new Date();
+            
+            if((date.compareTo(anList.get(i).getDatedébutchasse())>0) && (date.compareTo(anList.get(i).getDatefinchasse())<0)){
+                an.setIsHunted(true);
+            }
+            else
+            {
+                an.setIsHunted(false);
+            }
+            resList.add(an);
+            i++;
         }
         
     return resList;
@@ -107,6 +118,51 @@ public class AnimalFacade extends AbstractFacade<Animal> implements AnimalFacade
         ani.setUrlimage(res.getUrlimage());
         
     return ani;
+    }
+    
+    
+    public List<model.Animal> search(String item, int idlang){
+        Query queryLangue;
+        Query queryAnimal;
+        queryAnimal = em.createNamedQuery("Animal.findById");
+        queryLangue = em.createNamedQuery("Tradanimal.search");
+        Langue lang = new Langue();
+        lang.setId(idlang);
+        queryLangue.setParameter("item", item + "%");
+        queryLangue.setParameter("idlang", lang);
+        List<entityPackage.Tradanimal> trad = queryLangue.getResultList();
+        entityPackage.Animal anET = new entityPackage.Animal();
+        model.Animal an = new model.Animal();
+        List<model.Animal> resList = new ArrayList<model.Animal>();
+        int i = 0;
+        
+        if(trad.isEmpty()){
+            while(i<trad.size())
+            {
+                queryAnimal.setParameter("id", trad.get(i).getId());
+                anET = (entityPackage.Animal) queryAnimal.getSingleResult();
+                an.setDatedébutchasse(anET.getDatedébutchasse());
+                an.setDatefinchasse(anET.getDatefinchasse());
+                an.setId(anET.getId());
+                an.setIdCatToNull(null);
+                Date date = new Date();
+
+                if((date.compareTo(anET.getDatedébutchasse())>0) && (date.compareTo(anET.getDatefinchasse())<0)){
+                    an.setIsHunted(true);
+                }
+                else
+                {
+                    an.setIsHunted(false);
+                }
+
+                an.setNom(anET.getNom());
+                an.setUrlimage(anET.getUrlimage());
+                resList.add(an);
+            }
+        
+        }
+        return resList;
+        
     }
     
 }

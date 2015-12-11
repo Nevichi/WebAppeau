@@ -34,6 +34,8 @@ public interface AnimalFacadeLocal {
     public List<model.Animal> animalFromCat(Categorie id, int idlang);
     
     public model.Animal animalFromId(int id);
+    
+    public List<model.Animal> search(String item, int idlang);
 
     int count();
     
