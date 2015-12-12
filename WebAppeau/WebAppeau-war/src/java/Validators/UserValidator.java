@@ -35,9 +35,18 @@ public class UserValidator implements Validator {
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException
     {
+        String lang = (String) component.getValueExpression("userValAtt").getValue(context.getELContext());
+        
         String entry = (String) value;
+        FacesMessage mess;
         if(clientSessionBean.userExist(entry)){
-            FacesMessage mess = new FacesMessage(" Cet utilisateur existe déjà !");
+            if(lang.equals("fr")){
+            mess = new FacesMessage(" Cet utilisateur existe déjà !");
+            }
+            else
+            {
+            mess = new FacesMessage(" User already exists !");
+            }
             throw new ValidatorException(mess);
         }
     }

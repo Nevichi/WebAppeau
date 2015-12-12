@@ -132,14 +132,15 @@ public class AnimalFacade extends AbstractFacade<Animal> implements AnimalFacade
         queryLangue.setParameter("idlang", lang);
         List<entityPackage.Tradanimal> trad = queryLangue.getResultList();
         entityPackage.Animal anET = new entityPackage.Animal();
-        model.Animal an = new model.Animal();
+        model.Animal an;
         List<model.Animal> resList = new ArrayList<model.Animal>();
         int i = 0;
         
-        if(trad.isEmpty()){
+        if(!trad.isEmpty()){
             while(i<trad.size())
             {
-                queryAnimal.setParameter("id", trad.get(i).getId());
+                an = new model.Animal();
+                queryAnimal.setParameter("id", trad.get(i).getIdanimal().getId());
                 anET = (entityPackage.Animal) queryAnimal.getSingleResult();
                 an.setDatedébutchasse(anET.getDatedébutchasse());
                 an.setDatefinchasse(anET.getDatefinchasse());
@@ -155,9 +156,10 @@ public class AnimalFacade extends AbstractFacade<Animal> implements AnimalFacade
                     an.setIsHunted(false);
                 }
 
-                an.setNom(anET.getNom());
+                an.setNom(trad.get(i).getNom());
                 an.setUrlimage(anET.getUrlimage());
                 resList.add(an);
+                i++;
             }
         
         }

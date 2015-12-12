@@ -11,6 +11,7 @@
         <ui:composition template="./generalTemplate.xhtml">
 
             <ui:define name="content">
+                <h:outputText value="test"></h:outputText>
                 <c:forEach items="#{animalManager.search(animalManager.locale.toString())}" var="animal">
                     <div class="presAppeau"><h:form>
                             <h:link value="#{animal.nom}" outcome="showAppeau.xhtml">
