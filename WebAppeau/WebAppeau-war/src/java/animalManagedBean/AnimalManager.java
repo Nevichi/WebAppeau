@@ -11,6 +11,7 @@ import business.CategorieSessionBeanLocal;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import javax.ejb.EJB;
@@ -38,6 +39,7 @@ public class AnimalManager implements Serializable {
     private int saveCat;
     private Locale locale = new Locale("fr");
     private String itemSearch;
+    //private HashMap<Appeau> hmapApp;
 
     public Animal getAnimalToManage() {
         return animalToManage;

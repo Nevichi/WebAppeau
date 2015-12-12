@@ -24,18 +24,37 @@ public class emailValidator implements Validator {
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException
     {
+        
+        String lang = (String) component.getValueExpression("emailValAtt").getValue(context.getELContext());
+        
         String entry = (String) value;
         UIInput uiInputConfirmPassword = (UIInput) component.getAttributes().get("confirmEmail");
         String confirmEmail = uiInputConfirmPassword.getSubmittedValue().toString();
+        FacesMessage mess;
         if(entry == null || entry.isEmpty() || confirmEmail == null || confirmEmail.isEmpty()){
             return;}
         if(!entry.equals(confirmEmail)){
             uiInputConfirmPassword.setValid(false);
-            throw new ValidatorException(new FacesMessage(" Le mail doit être le même"));
+            if(lang.equals("fr")){
+                mess = new FacesMessage(" Les mails doivent être identiques");
+            }
+            else
+            {
+                mess = new FacesMessage(" Emails must be the same");
+            }
+            throw new ValidatorException(mess);
         }
         if (!(entry.matches("([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)"))){
             uiInputConfirmPassword.setValid(false);
-            throw new ValidatorException(new FacesMessage(" Le mail doit être valide"));
+            
+            if(lang.equals("fr")){
+                mess = new FacesMessage(" Adresse mail invalide");
+            }
+            else
+            {
+                mess = new FacesMessage(" Invalid Email");
+            }
+            throw new ValidatorException(mess);
         }
     }
 }

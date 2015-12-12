@@ -53,6 +53,7 @@
                         <h:inputText id="inputQte">
                             <f:validator validatorId="orderValidator"></f:validator>
                             <f:attribute name="confirmOrder" value ="#{confirmOrder}"/>
+                            <f:attribute name="inputValAtt" value="#{animalManager.locale.toString()}"></f:attribute>
                         </h:inputText><br></br>
                         <h:commandButton value="#{msg.order}" action="faces/panier.xhtml"></h:commandButton><br></br>
                         <h:message for="inputQte"></h:message>
@@ -98,12 +99,13 @@
                             <h:outputText value="#{msg.order}"></h:outputText>
                         </f:facet>
                         <h:form>
-                        <h:inputText id="inputQte2">
-                            <f:validator validatorId="orderValidator2"></f:validator>
-                            <f:attribute name="confirmOrder2" value ="#{confirmOrder2}"/>
+                        <h:inputText id="inputQte">
+                            <f:validator validatorId="orderValidator"></f:validator>
+                            <f:attribute name="confirmOrder" value ="#{confirmOrder}"/>
+                            <f:attribute name="inputValAtt" value="#{animalManager.locale.toString()}"></f:attribute>
                         </h:inputText><br></br>
                         <h:commandButton value="#{msg.order}" action="faces/panier.xhtml"></h:commandButton><br></br>
-                        <h:message for="inputQte2"></h:message>
+                        <h:message for="inputQte"></h:message>
                         </h:form>
                     </h:column>
                 </h:dataTable>

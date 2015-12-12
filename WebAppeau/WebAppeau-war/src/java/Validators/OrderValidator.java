@@ -24,16 +24,34 @@ public class OrderValidator implements Validator {
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         String ent = (String) value;
+        String lang = (String) component.getValueExpression("inputValAtt").getValue(context.getELContext());
         int entry = Integer.parseInt(ent);
         UIOutput uiInputConfirmOrder = (UIOutput) component.getAttributes().get("confirmOrder");
         String confirmOrder = uiInputConfirmOrder.getValue().toString();
         int confInt = Integer.parseInt(confirmOrder);
+        FacesMessage mess;
+        
         
         if(entry <= 0){
-            throw new ValidatorException(new FacesMessage(" Vous devez entrer un nombre positif !"));
+            if(lang.equals("fr")){
+            mess = new FacesMessage(" Vous devez entrer un nombre positif !");
+            }
+            else
+            {
+            mess = new FacesMessage(" The amount must be positive");
+            }
+            throw new ValidatorException(mess);
         }
         if(entry > confInt){
-            throw new ValidatorException(new FacesMessage(" Il n'y a pas assez d'appeau en stock !"));
+            if(lang.equals("fr"))
+            {
+                mess = new FacesMessage(" Il n'y a pas assez d'appeau en stock !");
+            }
+            else
+            {
+                mess = new FacesMessage(" Theire are not enough duck calls in our stock");
+            }
+            throw new ValidatorException(mess);
         }
     }
     

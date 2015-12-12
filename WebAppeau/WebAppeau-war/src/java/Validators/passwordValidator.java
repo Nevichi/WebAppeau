@@ -24,14 +24,25 @@ public class passwordValidator implements Validator {
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException
     {
+        String lang = (String) component.getValueExpression("passwordValAtt").getValue(context.getELContext());
+        
+        
         String entry = (String) value;
         UIInput uiInputConfirmPassword = (UIInput) component.getAttributes().get("confirmPassword");
         String confirmPassword = uiInputConfirmPassword.getSubmittedValue().toString();
+        FacesMessage mess;
         if(entry == null || entry.isEmpty() || confirmPassword == null || confirmPassword.isEmpty()){
             return;}
         if(!entry.equals(confirmPassword)){
             uiInputConfirmPassword.setValid(false);
-            throw new ValidatorException(new FacesMessage("Le mot de passe doit être le même"));
+            if(lang.equals("fr")){
+            mess = new FacesMessage(" Les mots de passe doivent être identiques");
+            }
+            else
+            {
+            mess = new FacesMessage(" Password must be the same");
+            }
+            throw new ValidatorException(mess);
         }
     }
 }
