@@ -42,7 +42,10 @@
                         <f:facet name="header">
                             <h:outputText value="#{msg.price}"/>
                         </f:facet>
-                        <h:outputText value="#{line.prix}" converter="PriceConverter"/>
+                        <h:outputText value="#{line.prix}" converter="PriceConverter"/><br></br>
+                        <c:if test="#{param.hunted}">
+                            <h:outputText value="#{msg.promoMsg}" style="color:red; font-size: 16px;"></h:outputText>
+                        </c:if>
                     </h:column>
                     
                     <h:column>
@@ -50,12 +53,12 @@
                             <h:outputText value="#{msg.order}"></h:outputText>
                         </f:facet>
                         <h:form>
-                        <h:inputText id="inputQte">
+                        <h:inputText id="inputQte" value="qtyToOrder">
                             <f:validator validatorId="orderValidator"></f:validator>
                             <f:attribute name="confirmOrder" value ="#{confirmOrder}"/>
                             <f:attribute name="inputValAtt" value="#{animalManager.locale.toString()}"></f:attribute>
                         </h:inputText><br></br>
-                        <h:commandButton value="#{msg.order}" action="faces/panier.xhtml"></h:commandButton><br></br>
+                        <h:commandButton value="#{msg.order}" action="#{animalManager.order(line, qtyToOrder)}"></h:commandButton><br></br>
                         <h:message for="inputQte"></h:message>
                         </h:form>
                     </h:column>
@@ -91,7 +94,10 @@
                         <f:facet name="header">
                             <h:outputText value="#{msg.price}"/>
                         </f:facet>
-                        <h:outputText id="prixBarre" value="#{line.prix}" converter="PriceConverter"/>
+                        <h:outputText id="prixBarre" value="#{line.prix}" converter="PriceConverter"/><br></br>
+                        <c:if test="#{param.hunted}">
+                            <h:outputText value="#{msg.promoMsg}" style="color:red; font-size: 16px;"></h:outputText>
+                        </c:if>
                     </h:column>
                         
                     <h:column>

@@ -13,16 +13,14 @@ package model;
 public class Appeau {
     private int id;
     private double prix;
-    private int nbStock;
     private String nom;
     private Animal refAnimal;
     private String urlImage;
     
     
-    public Appeau(int i, double p, int nb, String n, String url){
+    public Appeau(int i, double p, String n, String url){
     id = i;
     prix=p;
-    nbStock = nb;
     nom = n;
     urlImage = url;
     }
@@ -43,14 +41,6 @@ public class Appeau {
 
     public void setPrix(double prix) {
         this.prix = prix;
-    }
-
-    public int getNbStock() {
-        return nbStock;
-    }
-
-    public void setNbStock(int nbStock) {
-        this.nbStock = nbStock;
     }
 
     public String getNom() {

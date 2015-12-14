@@ -7,6 +7,7 @@ package facades;
 
 import entityPackage.Appeau;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -41,7 +42,6 @@ public class AppeauFacade extends AbstractFacade<Appeau> implements AppeauFacade
         model.Appeau app = new model.Appeau();
         app.setId(appList.get(i).getId());
         app.setNom(appList.get(i).getNom());
-        app.setNbStock(appList.get(i).getNbstock());
         app.setPrix(appList.get(i).getPrix().doubleValue());
         app.setUrlImage(appList.get(i).getUrlimage());
         app.setAnimal(null);
@@ -63,6 +63,8 @@ public class AppeauFacade extends AbstractFacade<Appeau> implements AppeauFacade
         ani.setDatefinchasse(an.getDatefinchasse());
         ani.setUrlimage(an.getUrlimage());
         ani.setIdcategorie(null);
+        double prix;
+        Date date = new Date();
         
         query.setParameter("idan", ani);
         int i = 0;
@@ -72,9 +74,13 @@ public class AppeauFacade extends AbstractFacade<Appeau> implements AppeauFacade
         model.Appeau ap = new model.Appeau();
         ap.setAnimal(null);
         ap.setId(anList.get(i).getId());
-        ap.setNbStock(anList.get(i).getNbstock());
         ap.setNom(anList.get(i).getNom());
-        ap.setPrix(anList.get(i).getPrix().doubleValue());
+        prix = anList.get(i).getPrix().doubleValue();
+        
+        if((date.compareTo(an.getDatedébutchasse())>0) && (date.compareTo(an.getDatefinchasse())<0)){
+            prix = prix - prix*0.15;
+        }
+        ap.setPrix(prix);
         ap.setUrlImage(anList.get(i).getUrlimage());
         resList.add(ap);
         i++;

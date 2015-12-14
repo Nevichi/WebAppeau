@@ -14,9 +14,19 @@
                 <c:if test="#{not empty param.categorie}">
                 <c:forEach items="#{animalManager.findAnimalFromCategory(param.categorie, animalManager.locale.toString())}" var="animal">
                     <div class="presAppeau"><h:form>
+                            <c:if test="#{animal.isHunted}">
+                            <h:link value="#{animal.nom}" outcome="showAppeau.xhtml" style="color: red; font-size: 16px;">
+                                <f:param name="selectedAnimal" value="#{animal.id}"></f:param>
+                                <f:param name="hunted" value="#{animal.isHunted}"></f:param>
+                            </h:link><br></br>
+                            <h:outputText value="#{msg.promoMsg}" style="color: red;"></h:outputText>
+                            </c:if>
+                            <c:if test="#{!animal.isHunted}">
                             <h:link value="#{animal.nom}" outcome="showAppeau.xhtml">
                                 <f:param name="selectedAnimal" value="#{animal.id}"></f:param>
+                                <f:param name="hunted" value="#{animal.isHunted}"></f:param>
                             </h:link>
+                            </c:if>
                             <br></br>
                         </h:form>
                         <h:graphicImage url="#{animal.urlimage}" width="100" height="55"/><br></br>
@@ -27,9 +37,19 @@
                 <c:if test="#{empty param.categorie}">
                     <c:forEach items="#{animalManager.findAnimalFromCategory(animalManager.saveCat, animalManager.locale.toString())}" var="animal">
                     <div class="presAppeau"><h:form>
+                            <c:if test="#{animal.isHunted}">
+                            <h:link value="#{animal.nom}" outcome="showAppeau.xhtml" style="color: red; font-size: 16px;">
+                                <f:param name="selectedAnimal" value="#{animal.id}"></f:param>
+                                <f:param name="hunted" value="#{animal.isHunted}"></f:param>
+                            </h:link><br></br>
+                            <h:outputText value="#{msg.promoMsg}" style="color: red;"></h:outputText>
+                            </c:if>
+                            <c:if test="#{!animal.isHunted}">
                             <h:link value="#{animal.nom}" outcome="showAppeau.xhtml">
                                 <f:param name="selectedAnimal" value="#{animal.id}"></f:param>
+                                <f:param name="hunted" value="#{animal.isHunted}"></f:param>
                             </h:link>
+                            </c:if>
                             <br></br>
                         </h:form>
                         <h:graphicImage url="#{animal.urlimage}" width="100" height="55"/><br></br>

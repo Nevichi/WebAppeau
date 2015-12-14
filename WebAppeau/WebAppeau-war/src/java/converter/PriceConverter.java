@@ -24,7 +24,9 @@ public class PriceConverter implements javax.faces.convert.Converter {
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
-        return value + " €";
+        double prix = (double) value;
+        prix = Math.floor(prix * 100) / 100;
+        return String.valueOf(prix) + " €";
         
     }
     

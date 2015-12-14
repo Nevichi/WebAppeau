@@ -28,8 +28,20 @@ public class OrderValidator implements Validator {
         int entry = Integer.parseInt(ent);
         UIOutput uiInputConfirmOrder = (UIOutput) component.getAttributes().get("confirmOrder");
         String confirmOrder = uiInputConfirmOrder.getValue().toString();
-        int confInt = Integer.parseInt(confirmOrder);
         FacesMessage mess;
+        if(!ent.matches("^[0-9]+$")){
+            
+            if(lang.equals("fr")){
+                throw new ValidatorException(new FacesMessage (" Vous devez entre un nombre"));
+            }
+            else
+            {
+                throw new ValidatorException(new FacesMessage (" You must give a number"));
+            }
+        }
+        
+        int confInt = Integer.parseInt(confirmOrder);
+        
         
         
         if(entry <= 0){
@@ -53,6 +65,7 @@ public class OrderValidator implements Validator {
             }
             throw new ValidatorException(mess);
         }
+        
     }
     
     

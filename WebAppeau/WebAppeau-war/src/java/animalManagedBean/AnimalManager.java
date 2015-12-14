@@ -36,10 +36,11 @@ public class AnimalManager implements Serializable {
 
     private Animal animalToManage;
     private int saveAnimal;
+    private String saveAnimalNom;
     private int saveCat;
     private Locale locale = new Locale("fr");
     private String itemSearch;
-    //private HashMap<Appeau> hmapApp;
+    private HashMap<Integer, Appeau> hmapApp;
 
     public Animal getAnimalToManage() {
         return animalToManage;
@@ -52,6 +53,7 @@ public class AnimalManager implements Serializable {
     
     public AnimalManager() {
         animalToManage = new Animal();
+        hmapApp = new HashMap<Integer, Appeau>();
     }
 
     public String getItemSearch() {
@@ -104,9 +106,8 @@ public class AnimalManager implements Serializable {
 
       public List<Appeau> appeauFromAnimal(int an){
     saveAnimal=an;
-
     return appeauSessionBean.appeauFromAnimal(animalSessionBean.animalFromId(saveAnimal));
-    }
+      }
 
     public int getSaveAnimal() {
         return saveAnimal;
@@ -148,6 +149,25 @@ public class AnimalManager implements Serializable {
     
     return animalSessionBean.search(item, intid);
     }
+
+    public HashMap<Integer, Appeau> getHmapApp() {
+        return hmapApp;
+    }
+
+    public void setHmapApp(HashMap<Integer, Appeau> hmapApp) {
+        this.hmapApp = hmapApp;
+    }
+    
+    
+    
+    
+    
+    public String order(Appeau app, String qtyToOrder){
+        int qty = Integer.parseInt(qtyToOrder);
+        hmapApp.put(qty, app);
+        return "panier";
+    }
+    
     
     
 }

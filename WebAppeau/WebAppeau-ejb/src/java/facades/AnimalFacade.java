@@ -77,6 +77,7 @@ public class AnimalFacade extends AbstractFacade<Animal> implements AnimalFacade
         List<entityPackage.Animal> anList = query.getResultList();
         List<model.Animal> resList = new ArrayList<model.Animal>();
         entityPackage.Tradanimal trad = new entityPackage.Tradanimal();
+        Date date = new Date();
         
         while(i<anList.size()){
             model.Animal an = new model.Animal();
@@ -88,7 +89,7 @@ public class AnimalFacade extends AbstractFacade<Animal> implements AnimalFacade
             an.setNom(trad.getNom());
             an.setUrlimage(anList.get(i).getUrlimage());
             an.setIdCatToNull(null);
-            Date date = new Date();
+            
             
             if((date.compareTo(anList.get(i).getDatedébutchasse())>0) && (date.compareTo(anList.get(i).getDatefinchasse())<0)){
                 an.setIsHunted(true);
