@@ -29,13 +29,18 @@
                             <h:outputLabel value="#{msg.usernameLabel}" for="userName"></h:outputLabel><br></br>
                             <h:inputText id="userName" required="true" requiredMessage=" #{msg.choblig}" value="#{clientManager.client.username}"></h:inputText>
                             <h:message for="userName"></h:message><br></br>
+                            
                             <h:outputLabel value="#{msg.pswLabel}" for="password"></h:outputLabel><br></br>
                             <h:inputSecret id="password" required="true" requiredMessage=" #{msg.chobli}" value="#{clientManager.client.password}"></h:inputSecret>
                             
                             <h:message for="password"></h:message><br></br>
+                            <c:if test="#{clientManager.wrongLogin}">
+                                <h:outputText value="#{msg.invalidUserPassword}"/><br></br>
+                            </c:if>
                             <h:commandButton value="#{msg.login}" action="#{clientManager.validateUsernamePassword()}"/>
                             
                         </h:form></c:if>
+                        
                         <c:if test="#{clientManager.isLogged==true}"><h:form>
                                 <h:outputText value="#{msg.welcomemsg}"></h:outputText>
                                 <h:outputText value="#{clientManager.logged}"></h:outputText><br></br>
@@ -90,7 +95,7 @@
                     </h:form>
                 </div>
                 <div id="aboutUsFooter">
-                    <h:link outcome="faces/aboutUs.xhtml" value="#{msg.aboutUsLabel}"></h:link>
+                    <h:link id="aboutUsLink" outcome="faces/aboutUs.xhtml" value="#{msg.aboutUsLabel}"></h:link>
                 </div>
             </ui:insert>
         </div>

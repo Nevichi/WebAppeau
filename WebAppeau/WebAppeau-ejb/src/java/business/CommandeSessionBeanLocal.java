@@ -5,8 +5,10 @@
  */
 package business;
 
+import java.util.HashMap;
 import javax.ejb.Local;
 import model.Commande;
+import model.Contenant;
 
 /**
  *
@@ -15,5 +17,7 @@ import model.Commande;
 @Local
 public interface CommandeSessionBeanLocal {
     public void createCommande(Commande cmd);
+    
+    public void createContenant(HashMap<Integer, Contenant> hmapApp);
     
 }

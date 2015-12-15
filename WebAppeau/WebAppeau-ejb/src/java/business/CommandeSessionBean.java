@@ -6,9 +6,12 @@
 package business;
 
 import facades.CommandeFacadeLocal;
+import facades.ContenantFacadeLocal;
+import java.util.HashMap;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import model.Commande;
+import model.Contenant;
 
 /**
  *
@@ -17,10 +20,18 @@ import model.Commande;
 @Stateless
 public class CommandeSessionBean implements CommandeSessionBeanLocal {
     @EJB
+    private ContenantFacadeLocal contenantFacade;
+    @EJB
     private CommandeFacadeLocal commandeFacade;
     
+    
+    @Override
     public void createCommande(Commande cmd){
         commandeFacade.createCommande(cmd);
+    }
+    
+    public void createContenant(HashMap<Integer, Contenant> hmapApp){
+        contenantFacade.createContenant(hmapApp);
     }
     
 }

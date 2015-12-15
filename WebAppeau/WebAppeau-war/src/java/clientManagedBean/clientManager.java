@@ -28,6 +28,7 @@ public class clientManager implements Serializable {
 
     private Client client;
     private String logged;
+    private boolean wrongLogin;
     private boolean isLogged;
 
     public boolean isIsLogged() {
@@ -40,6 +41,7 @@ public class clientManager implements Serializable {
     
     public clientManager() {
         client = new Client();
+        wrongLogin = false;
     }
 
     public ClientSessionBeanLocal getClientSessionBean() {
@@ -78,12 +80,16 @@ public class clientManager implements Serializable {
         
         if (valid) {
             logged = client.getUsername();
-            client=null;
+            client.setUsername(null);
+            client.setPassword(null);
             isLogged = true;
+            wrongLogin = false;
             return ctx.getViewRoot().getViewId();
         } else {
             isLogged = false;
-            client=null;
+            client.setUsername(null);
+            client.setPassword(null);
+            wrongLogin=true;
             return ctx.getViewRoot().getViewId();
         }
     }
@@ -95,5 +101,16 @@ public class clientManager implements Serializable {
         isLogged = false;
         return ctx.getViewRoot().getViewId();
     } 
+
+    public boolean isWrongLogin() {
+        return wrongLogin;
+    }
+
+    public void setWrongLogin(boolean wrongLogin) {
+        this.wrongLogin = wrongLogin;
+    }
+    
+    
+    
     
 }

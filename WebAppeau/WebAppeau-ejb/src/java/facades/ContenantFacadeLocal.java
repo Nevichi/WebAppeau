@@ -6,6 +6,7 @@
 package facades;
 
 import entityPackage.Contenant;
+import java.util.HashMap;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -25,6 +26,8 @@ public interface ContenantFacadeLocal {
     Contenant find(Object id);
 
     List<Contenant> findAll();
+    
+    public void createContenant(HashMap<Integer, model.Contenant> hmapApp);
 
     List<Contenant> findRange(int[] range);
 

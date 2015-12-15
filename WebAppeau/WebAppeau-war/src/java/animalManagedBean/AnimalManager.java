@@ -231,6 +231,7 @@ public class AnimalManager implements Serializable {
             cmd.setDateCommande(date);
             cmd.setClient(clientSessionBean.findClient(user));
             commandeSessionBean.createCommande(cmd);
+            commandeSessionBean.createContenant(hmapApp);
             hmapApp = new HashMap<Integer, Contenant>();
             return "confirm";
         }
