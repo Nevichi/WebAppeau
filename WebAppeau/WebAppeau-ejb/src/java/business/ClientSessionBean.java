@@ -43,5 +43,10 @@ public class ClientSessionBean implements ClientSessionBeanLocal {
         return clientFacade.userExist(user);
     }
     
+    @Override
+    public Client findClient(String user){
+        return clientFacade.findClient(user);
+    }
+    
     
 }

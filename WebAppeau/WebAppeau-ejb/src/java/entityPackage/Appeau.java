@@ -7,6 +7,7 @@ package entityPackage;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,9 +18,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -29,10 +32,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "APPEAU")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Appeau.findAll", query = "SELECT a FROM Appeau a"),
+        @NamedQuery(name = "Appeau.findAll", query = "SELECT a FROM Appeau a"),
     @NamedQuery(name = "Appeau.findById", query = "SELECT a FROM Appeau a WHERE a.id = :id"),
     @NamedQuery(name = "Appeau.findByPrix", query = "SELECT a FROM Appeau a WHERE a.prix = :prix"),
-    @NamedQuery(name = "Appeau.findByNbstock", query = "SELECT a FROM Appeau a WHERE a.nbstock = :nbstock"),
     @NamedQuery(name = "Appeau.findByNom", query = "SELECT a FROM Appeau a WHERE a.nom = :nom"),
     @NamedQuery(name = "Appeau.findByUrlimage", query = "SELECT a FROM Appeau a WHERE a.urlimage = :urlimage"),
     @NamedQuery(name = "Appeau.findByAnimal", query = "SELECT a FROM Appeau a, Animal c WHERE a.idanimal = :idan AND :idan = c")})
@@ -46,8 +48,6 @@ public class Appeau implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "PRIX")
     private BigDecimal prix;
-    @Column(name = "NBSTOCK")
-    private Integer nbstock;
     @Size(max = 256)
     @Column(name = "NOM")
     private String nom;
@@ -57,6 +57,8 @@ public class Appeau implements Serializable {
     @JoinColumn(name = "IDANIMAL", referencedColumnName = "ID")
     @ManyToOne
     private Animal idanimal;
+    @OneToMany(mappedBy = "idappeau")
+    private Collection<Contenant> contenantCollection;
 
     public Appeau() {
     }
@@ -81,14 +83,6 @@ public class Appeau implements Serializable {
         this.prix = prix;
     }
 
-    public Integer getNbstock() {
-        return nbstock;
-    }
-
-    public void setNbstock(Integer nbstock) {
-        this.nbstock = nbstock;
-    }
-
     public String getNom() {
         return nom;
     }
@@ -111,6 +105,15 @@ public class Appeau implements Serializable {
 
     public void setIdanimal(Animal idanimal) {
         this.idanimal = idanimal;
+    }
+
+    @XmlTransient
+    public Collection<Contenant> getContenantCollection() {
+        return contenantCollection;
+    }
+
+    public void setContenantCollection(Collection<Contenant> contenantCollection) {
+        this.contenantCollection = contenantCollection;
     }
 
     @Override

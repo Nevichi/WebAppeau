@@ -7,19 +7,18 @@ package entityPackage;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -45,8 +44,12 @@ public class Contenant implements Serializable {
     private BigDecimal prixappeaux;
     @Column(name = "QUANTIT\u00c9")
     private Integer quantité;
-    @OneToMany(mappedBy = "idcont")
-    private Collection<Commande> commandeCollection;
+    @JoinColumn(name = "IDAPPEAU", referencedColumnName = "ID")
+    @ManyToOne
+    private Appeau idappeau;
+    @JoinColumn(name = "IDCMD", referencedColumnName = "ID")
+    @ManyToOne
+    private Commande idcmd;
 
     public Contenant() {
     }
@@ -79,13 +82,20 @@ public class Contenant implements Serializable {
         this.quantité = quantité;
     }
 
-    @XmlTransient
-    public Collection<Commande> getCommandeCollection() {
-        return commandeCollection;
+    public Appeau getIdappeau() {
+        return idappeau;
     }
 
-    public void setCommandeCollection(Collection<Commande> commandeCollection) {
-        this.commandeCollection = commandeCollection;
+    public void setIdappeau(Appeau idappeau) {
+        this.idappeau = idappeau;
+    }
+
+    public Commande getIdcmd() {
+        return idcmd;
+    }
+
+    public void setIdcmd(Commande idcmd) {
+        this.idcmd = idcmd;
     }
 
     @Override

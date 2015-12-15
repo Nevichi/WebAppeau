@@ -42,8 +42,9 @@ public class InscrManager implements Serializable {
     
     public String createClient(){
         clientSessionBean.createClient(clientToManage);
-        
-        return clientToManage.getUsername();
+        String user = clientToManage.getUsername();
+        clientToManage = new Client();
+        return user;
     }
    
 

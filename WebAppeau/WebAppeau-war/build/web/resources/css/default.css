@@ -71,3 +71,8 @@ ul, li {
     display: inline-block;
     color: red;
 }
+
+table, th, td{
+     border: 1px solid black;
+    
+}

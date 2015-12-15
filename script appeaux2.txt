@@ -1,12 +1,12 @@
-Drop table Commande;
+Drop table TradCategorie;
+Drop table TradAnimal;
 Drop table Contenant;
-Drop table Client;
 Drop table Appeau;
 Drop table Animal;
 Drop table Categorie;
 Drop table Langue;
-Drop table TradCategorie;
-Drop table TradAnimal;
+Drop table Commande;
+Drop table Client;
 
 create table Categorie
 (
@@ -19,6 +19,18 @@ create table Langue
 (
 id integer generated always as identity (start with 1, increment by 1) constraint idlang_pk primary key,
 nom varchar(256)
+);
+
+create table Client
+(
+id integer generated always as identity (start with 1, increment by 1) constraint idcli_pk primary key,
+email varchar(100),
+adresseDomicile varchar(256),
+ville varchar(256),
+cPostal numeric(5),
+numTel integer,
+login varchar (25),
+password varchar(512)
 );
 
 create table TradCategorie
@@ -59,32 +71,26 @@ IDAnimal integer constraint IDA_fk references Animal(id)
 );
 
 
-create table Contenant
-(
-id integer generated always as identity (start with 1, increment by 1) constraint idcont_pk primary key,
-prixAppeaux numeric(8,2),
-quantité integer
-);
-
-create table Client
-(
-id integer generated always as identity (start with 1, increment by 1) constraint idcli_pk primary key,
-email varchar(100),
-adresseDomicile varchar(256),
-numTel integer,
-login varchar (25),
-password varchar(512)
-);
-
 
 create table Commande
 (
 id integer generated always as identity (start with 1, increment by 1) constraint idcmd_pk primary key,
 dateCommande date,
-adresseLivraison varchar(256),
-IDCont integer constraint IDCont_fk references Contenant(id),
 IDClient integer constraint IDClient_fk references Client(id)
 );
+
+
+
+create table Contenant
+(
+id integer generated always as identity (start with 1, increment by 1) constraint idcont_pk primary key,
+prixAppeaux numeric(8,2),
+quantité integer,
+IDAppeau integer constraint IDAppeau_fk references Appeau(id),
+IDCmd integer constraint IDCmd_fk references Commande(id)
+);
+
+
 
 
 insert into Langue(nom) values ('Francais');

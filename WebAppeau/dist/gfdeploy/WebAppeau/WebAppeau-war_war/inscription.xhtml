@@ -3,13 +3,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <body>
 
         <ui:composition template="./generalTemplate.xhtml">
 
             <ui:define name="content">
+                <c:if test="#{!clientManager.isLogged}">
                 <h:form id="formInscr">
                     <h:outputLabel value="#{msg.usernameLabel}" for="userName"></h:outputLabel>
                     <h:inputText id="userName" required="true" requiredMessage=" #{msg.chobli}" value="#{inscrManager.clientToManage.username}">
@@ -57,14 +59,21 @@
                     <h:message for="cpostal"></h:message><br></br>
                     
                     <h:outputLabel value="#{msg.numTelLabel}" for="numTel"></h:outputLabel>
-                    <h:inputText id="numTel" required="true" validatorMessage=" #{msg.errorNumTel}" value="#{inscrManager.clientToManage.numTel}">
-                        <f:validateDoubleRange minimum="99999999" maximum="100000000"/></h:inputText>
+                    <h:inputText id="numTel" required="true" validatorMessage=" #{msg.errorNumTel}" value="#{inscrManager.clientToManage.numTel}"></h:inputText>
+                        
                     <h:message for="numTel"></h:message><br></br>
                     
                     
                 
                 <br></br><h:commandButton value ="#{msg.next}" action="faces/inscriptionRes.xhtml"/>
                 </h:form>
+                </c:if>
+                
+                <c:if test="#{clientManager.isLogged}">
+                    <h:outputText value="#{msg.errorSubs}"></h:outputText>
+                </c:if>
+                
+                
             </ui:define>
 
         </ui:composition>

@@ -15,7 +15,7 @@
     border-radius: 5px;
     position: relative;
     background-color: #c2dfef;
-    padding: 5px;
+    padding: 20px;
     margin: 10px 0px 0px 0px;
 }
 
@@ -89,4 +89,19 @@
 #searchBox
 {
  text-align: right;
+}
+
+#aboutUs
+{
+    text-align: center;
+}
+
+#aboutUsFooter
+{
+    text-align: right;
+    color: red;
+}
+
+#languageDisplay{
+    float:left;
 }

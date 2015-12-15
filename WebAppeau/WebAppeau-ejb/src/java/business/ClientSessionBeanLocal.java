@@ -21,4 +21,6 @@ public interface ClientSessionBeanLocal {
     
     public boolean userExist(String user);
     
+    public Client findClient(String user);
+    
 }

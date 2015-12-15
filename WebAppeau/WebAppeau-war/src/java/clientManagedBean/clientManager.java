@@ -78,10 +78,12 @@ public class clientManager implements Serializable {
         
         if (valid) {
             logged = client.getUsername();
+            client=null;
             isLogged = true;
             return ctx.getViewRoot().getViewId();
         } else {
             isLogged = false;
+            client=null;
             return ctx.getViewRoot().getViewId();
         }
     }

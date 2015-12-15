@@ -47,6 +47,8 @@ public class ClientFacade extends AbstractFacade<Client> implements ClientFacade
     cliET.setEmail(c.getEmail());
     cliET.setLogin(c.getUsername());
     cliET.setNumtel(c.getNumTel());
+    cliET.setVille(c.getVille());
+    cliET.setCpostal(c.getCpostal());
     mdp = encrypt(c.getPassword());
     cliET.setPassword(mdp);
     create(cliET);
@@ -101,6 +103,7 @@ public class ClientFacade extends AbstractFacade<Client> implements ClientFacade
      }
      
      
+    @Override
      public boolean userExist(String user){
          Query query = em.createNamedQuery("Client.findByLogin");
          query.setParameter("login", user);
@@ -109,8 +112,24 @@ public class ClientFacade extends AbstractFacade<Client> implements ClientFacade
          if(cliList.isEmpty()){
              return false;
          }
-         return true;
-         
+         return true; 
      }
-     
+          
+    @Override
+     public model.Client findClient(String user){
+         Query query = em.createNamedQuery("Client.findByLogin");
+         query.setParameter("login", user);
+         entityPackage.Client cliET = (entityPackage.Client) query.getSingleResult();
+         model.Client client = new model.Client();
+         
+         client.setAdresse(cliET.getAdressedomicile());
+         client.setCpostal(cliET.getCpostal());
+         client.setEmail(cliET.getEmail());
+         client.setNumTel(cliET.getNumtel());
+         client.setUsername(cliET.getLogin());
+         client.setVille(cliET.getVille());
+         client.setId(cliET.getId());
+         
+         return client; 
+     }
 }

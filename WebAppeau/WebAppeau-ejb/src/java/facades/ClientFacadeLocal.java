@@ -33,6 +33,8 @@ public interface ClientFacadeLocal {
     public void createClient(model.Client c) throws Exception;
     
     public boolean validate (String user, String password) throws Exception;
+    
+    public model.Client findClient(String user);
 
     int count();
     

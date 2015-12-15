@@ -33,12 +33,13 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Client.findById", query = "SELECT c FROM Client c WHERE c.id = :id"),
     @NamedQuery(name = "Client.findByEmail", query = "SELECT c FROM Client c WHERE c.email = :email"),
     @NamedQuery(name = "Client.findByAdressedomicile", query = "SELECT c FROM Client c WHERE c.adressedomicile = :adressedomicile"),
+    @NamedQuery(name = "Client.findByVille", query = "SELECT c FROM Client c WHERE c.ville = :ville"),
+    @NamedQuery(name = "Client.findByCpostal", query = "SELECT c FROM Client c WHERE c.cpostal = :cpostal"),
+    @NamedQuery(name = "Client.findByNumtel", query = "SELECT c FROM Client c WHERE c.numtel = :numtel"),
     @NamedQuery(name = "Client.findByLogin", query = "SELECT c FROM Client c WHERE c.login = :login"),
     @NamedQuery(name = "Client.findByPassword", query = "SELECT c FROM Client c WHERE c.password = :password"),
     @NamedQuery(name = "Client.validate", query = "SELECT c FROM Client c WHERE c.login = :log AND c.password = :mdp")})
 public class Client implements Serializable {
-    @Column(name = "NUMTEL")
-    private Integer numtel;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,6 +53,13 @@ public class Client implements Serializable {
     @Size(max = 256)
     @Column(name = "ADRESSEDOMICILE")
     private String adressedomicile;
+    @Size(max = 256)
+    @Column(name = "VILLE")
+    private String ville;
+    @Column(name = "CPOSTAL")
+    private Integer cpostal;
+    @Column(name = "NUMTEL")
+    private Integer numtel;
     @Size(max = 25)
     @Column(name = "LOGIN")
     private String login;
@@ -90,6 +98,30 @@ public class Client implements Serializable {
 
     public void setAdressedomicile(String adressedomicile) {
         this.adressedomicile = adressedomicile;
+    }
+
+    public String getVille() {
+        return ville;
+    }
+
+    public void setVille(String ville) {
+        this.ville = ville;
+    }
+
+    public Integer getCpostal() {
+        return cpostal;
+    }
+
+    public void setCpostal(Integer cpostal) {
+        this.cpostal = cpostal;
+    }
+
+    public Integer getNumtel() {
+        return numtel;
+    }
+
+    public void setNumtel(Integer numtel) {
+        this.numtel = numtel;
     }
 
     public String getLogin() {
@@ -140,14 +172,6 @@ public class Client implements Serializable {
     @Override
     public String toString() {
         return "entityPackage.Client[ id=" + id + " ]";
-    }
-
-    public Integer getNumtel() {
-        return numtel;
-    }
-
-    public void setNumtel(Integer numtel) {
-        this.numtel = numtel;
     }
     
 }

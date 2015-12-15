@@ -42,8 +42,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Animal.findByUrlimage", query = "SELECT a FROM Animal a WHERE a.urlimage = :urlimage"),
     @NamedQuery(name = "Animal.findByCategorie", query = "SELECT a FROM Animal a, Categorie c WHERE a.idcategorie = :idcat AND :idcat = c")})
 public class Animal implements Serializable {
-    @OneToMany(mappedBy = "idanimal")
-    private Collection<Tradanimal> tradanimalCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -65,6 +63,8 @@ public class Animal implements Serializable {
     @JoinColumn(name = "IDCATEGORIE", referencedColumnName = "ID")
     @ManyToOne
     private Categorie idcategorie;
+    @OneToMany(mappedBy = "idanimal")
+    private Collection<Tradanimal> tradanimalCollection;
     @OneToMany(mappedBy = "idanimal")
     private Collection<Appeau> appeauCollection;
 
@@ -124,6 +124,15 @@ public class Animal implements Serializable {
     }
 
     @XmlTransient
+    public Collection<Tradanimal> getTradanimalCollection() {
+        return tradanimalCollection;
+    }
+
+    public void setTradanimalCollection(Collection<Tradanimal> tradanimalCollection) {
+        this.tradanimalCollection = tradanimalCollection;
+    }
+
+    @XmlTransient
     public Collection<Appeau> getAppeauCollection() {
         return appeauCollection;
     }
@@ -155,15 +164,6 @@ public class Animal implements Serializable {
     @Override
     public String toString() {
         return "entityPackage.Animal[ id=" + id + " ]";
-    }
-
-    @XmlTransient
-    public Collection<Tradanimal> getTradanimalCollection() {
-        return tradanimalCollection;
-    }
-
-    public void setTradanimalCollection(Collection<Tradanimal> tradanimalCollection) {
-        this.tradanimalCollection = tradanimalCollection;
     }
     
 }

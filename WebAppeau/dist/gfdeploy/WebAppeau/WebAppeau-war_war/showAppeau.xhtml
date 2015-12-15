@@ -33,13 +33,6 @@
                     
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="#{msg.stock}"></h:outputText>
-                        </f:facet>
-                        <h:outputText value="#{line.nbStock}" binding="#{confirmOrder}"></h:outputText>
-                    </h:column>
-                    
-                    <h:column>
-                        <f:facet name="header">
                             <h:outputText value="#{msg.price}"/>
                         </f:facet>
                         <h:outputText value="#{line.prix}" converter="PriceConverter"/><br></br>
@@ -53,14 +46,16 @@
                             <h:outputText value="#{msg.order}"></h:outputText>
                         </f:facet>
                         <h:form>
-                        <h:inputText id="inputQte" value="qtyToOrder">
+                            <h:inputText id="inputQte" value="#{animalManager.quantité}">
                             <f:validator validatorId="orderValidator"></f:validator>
                             <f:attribute name="confirmOrder" value ="#{confirmOrder}"/>
                             <f:attribute name="inputValAtt" value="#{animalManager.locale.toString()}"></f:attribute>
-                        </h:inputText><br></br>
-                        <h:commandButton value="#{msg.order}" action="#{animalManager.order(line, qtyToOrder)}"></h:commandButton><br></br>
-                        <h:message for="inputQte"></h:message>
+                        </h:inputText><br></br></h:form>
+                        <h:form>
+                        <h:commandButton value="#{msg.order}" action="#{animalManager.order(line)}"></h:commandButton><br></br>
                         </h:form>
+                        <h:message for="inputQte"></h:message>
+                        
                     </h:column>
                     
                 </h:dataTable>
@@ -85,13 +80,6 @@
                         
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="#{msg.stock}"></h:outputText>
-                        </f:facet>
-                        <h:outputText value="#{line.nbStock}" binding="#{confirmOrder2}"></h:outputText>
-                    </h:column>
-                        
-                    <h:column>
-                        <f:facet name="header">
                             <h:outputText value="#{msg.price}"/>
                         </f:facet>
                         <h:outputText id="prixBarre" value="#{line.prix}" converter="PriceConverter"/><br></br>
@@ -105,12 +93,12 @@
                             <h:outputText value="#{msg.order}"></h:outputText>
                         </f:facet>
                         <h:form>
-                        <h:inputText id="inputQte">
+                            <h:inputText id="inputQte" value="#{animalManager.quantité}">
                             <f:validator validatorId="orderValidator"></f:validator>
                             <f:attribute name="confirmOrder" value ="#{confirmOrder}"/>
                             <f:attribute name="inputValAtt" value="#{animalManager.locale.toString()}"></f:attribute>
                         </h:inputText><br></br>
-                        <h:commandButton value="#{msg.order}" action="faces/panier.xhtml"></h:commandButton><br></br>
+                        <h:commandButton value="#{msg.order}" action="#{animalManager.order(line)}"></h:commandButton><br></br>
                         <h:message for="inputQte"></h:message>
                         </h:form>
                     </h:column>

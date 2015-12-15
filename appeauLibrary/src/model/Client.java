@@ -10,6 +10,7 @@ package model;
  * @author Quentin
  */
 public class Client {
+    private int id;
     private String username;
     private String password;
     private String email;
@@ -85,6 +86,14 @@ public class Client {
 
     public void setNumTel(int numTel) {
         this.numTel = numTel;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     

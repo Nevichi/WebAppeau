@@ -6,6 +6,7 @@
 package entityPackage;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -17,11 +18,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -33,8 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Commande.findAll", query = "SELECT c FROM Commande c"),
     @NamedQuery(name = "Commande.findById", query = "SELECT c FROM Commande c WHERE c.id = :id"),
-    @NamedQuery(name = "Commande.findByDatecommande", query = "SELECT c FROM Commande c WHERE c.datecommande = :datecommande"),
-    @NamedQuery(name = "Commande.findByAdresselivraison", query = "SELECT c FROM Commande c WHERE c.adresselivraison = :adresselivraison")})
+    @NamedQuery(name = "Commande.findByDatecommande", query = "SELECT c FROM Commande c WHERE c.datecommande = :datecommande")})
 public class Commande implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -45,15 +46,11 @@ public class Commande implements Serializable {
     @Column(name = "DATECOMMANDE")
     @Temporal(TemporalType.DATE)
     private Date datecommande;
-    @Size(max = 256)
-    @Column(name = "ADRESSELIVRAISON")
-    private String adresselivraison;
     @JoinColumn(name = "IDCLIENT", referencedColumnName = "ID")
     @ManyToOne
     private Client idclient;
-    @JoinColumn(name = "IDCONT", referencedColumnName = "ID")
-    @ManyToOne
-    private Contenant idcont;
+    @OneToMany(mappedBy = "idcmd")
+    private Collection<Contenant> contenantCollection;
 
     public Commande() {
     }
@@ -78,14 +75,6 @@ public class Commande implements Serializable {
         this.datecommande = datecommande;
     }
 
-    public String getAdresselivraison() {
-        return adresselivraison;
-    }
-
-    public void setAdresselivraison(String adresselivraison) {
-        this.adresselivraison = adresselivraison;
-    }
-
     public Client getIdclient() {
         return idclient;
     }
@@ -94,12 +83,13 @@ public class Commande implements Serializable {
         this.idclient = idclient;
     }
 
-    public Contenant getIdcont() {
-        return idcont;
+    @XmlTransient
+    public Collection<Contenant> getContenantCollection() {
+        return contenantCollection;
     }
 
-    public void setIdcont(Contenant idcont) {
-        this.idcont = idcont;
+    public void setContenantCollection(Collection<Contenant> contenantCollection) {
+        this.contenantCollection = contenantCollection;
     }
 
     @Override

@@ -33,8 +33,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Categorie.findById", query = "SELECT c FROM Categorie c WHERE c.id = :id"),
     @NamedQuery(name = "Categorie.findByNom", query = "SELECT c FROM Categorie c WHERE c.nom = :nom")})
 public class Categorie implements Serializable {
-    @OneToMany(mappedBy = "idcategorie")
-    private Collection<Tradcategorie> tradcategorieCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,6 +42,8 @@ public class Categorie implements Serializable {
     @Size(max = 256)
     @Column(name = "NOM")
     private String nom;
+    @OneToMany(mappedBy = "idcategorie")
+    private Collection<Tradcategorie> tradcategorieCollection;
     @OneToMany(mappedBy = "idcategorie")
     private Collection<Animal> animalCollection;
 
@@ -68,6 +68,15 @@ public class Categorie implements Serializable {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    @XmlTransient
+    public Collection<Tradcategorie> getTradcategorieCollection() {
+        return tradcategorieCollection;
+    }
+
+    public void setTradcategorieCollection(Collection<Tradcategorie> tradcategorieCollection) {
+        this.tradcategorieCollection = tradcategorieCollection;
     }
 
     @XmlTransient
@@ -102,15 +111,6 @@ public class Categorie implements Serializable {
     @Override
     public String toString() {
         return "entityPackage.Categorie[ id=" + id + " ]";
-    }
-
-    @XmlTransient
-    public Collection<Tradcategorie> getTradcategorieCollection() {
-        return tradcategorieCollection;
-    }
-
-    public void setTradcategorieCollection(Collection<Tradcategorie> tradcategorieCollection) {
-        this.tradcategorieCollection = tradcategorieCollection;
     }
     
 }

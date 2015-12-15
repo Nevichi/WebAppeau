@@ -28,4 +28,30 @@ public class CommandeFacade extends AbstractFacade<Commande> implements Commande
         super(Commande.class);
     }
     
+    @Override
+    public void createCommande (model.Commande cmd){
+    entityPackage.Commande cmdET = new entityPackage.Commande();
+    cmdET.setDatecommande(cmd.getDateCommande());
+    
+    entityPackage.Client cliET = new entityPackage.Client();
+    model.Client c = cmd.getClient();
+    
+    cliET.setAdressedomicile(c.getAdresse());
+    cliET.setCommandeCollection(null);
+    cliET.setEmail(c.getEmail());
+    cliET.setLogin(c.getUsername());
+    cliET.setNumtel(c.getNumTel());
+    cliET.setVille(c.getVille());
+    cliET.setCpostal(c.getCpostal());
+    cliET.setId(c.getId());
+    
+    
+    cmdET.setIdclient(cliET);
+    
+    create(cmdET);
+    
+    
+    
+    }
+    
 }

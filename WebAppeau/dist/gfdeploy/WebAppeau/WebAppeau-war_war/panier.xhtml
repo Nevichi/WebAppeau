@@ -3,59 +3,34 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <body>
 
         <ui:composition template="./generalTemplate.xhtml">
 
             <ui:define name="content">
-                <h:dataTable value="#{animalManager.hmapApp}" var="line" border="1">
-                    
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{msg.imgApp}"/>
-                        </f:facet>
-                        <h:graphicImage url="#{line.urlImage}" width="155" height="50"/>
-                    </h:column>
-                    
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{msg.appeau}"></h:outputText>
-                        </f:facet>
-                        <h:outputText value="#{line.nom}"></h:outputText>
-                    </h:column>
-                    
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{msg.stock}"></h:outputText>
-                        </f:facet>
-                        <h:outputText value="#{line.nbStock}" binding="#{confirmOrder}"></h:outputText>
-                    </h:column>
-                    
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{msg.price}"/>
-                        </f:facet>
-                        <h:outputText value="#{line.prix}" converter="PriceConverter"/>
-                    </h:column>
-                    
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{msg.order}"></h:outputText>
-                        </f:facet>
-                        <h:form>
-                        <h:inputText id="inputQte" value="qtyToOrder">
-                            <f:validator validatorId="orderValidator"></f:validator>
-                            <f:attribute name="confirmOrder" value ="#{confirmOrder}"/>
-                            <f:attribute name="inputValAtt" value="#{animalManager.locale.toString()}"></f:attribute>
-                        </h:inputText><br></br>
-                        <h:commandButton value="#{msg.order}" action="#{animalManager.order(line, qtyToOrder)}"></h:commandButton><br></br>
-                        <h:message for="inputQte"></h:message>
-                        </h:form>
-                    </h:column>
-                    
-                </h:dataTable>
+            <h:form> 
+                        <table>
+                            <tr><th width="155"></th><th>#{msg.appeau}</th> <th>#{msg.price}</th> <th>#{msg.quantity}</th></tr>
+                            <c:forEach items="#{animalManager.hmapApp}" var="appeau">
+                                <tr>
+                                    <td>
+                                        <h:graphicImage url="#{appeau.value.app.urlImage}" width="150" height="55"/>
+                                    </td>
+                                    <td><h:outputText value="#{appeau.value.app.nom}"/></td>  
+                                    <td><h:outputText value="#{appeau.value.app.prix}" converter="PriceConverter"/></td>  
+                                    <td> <h:outputText value="#{appeau.value.qtité}" ></h:outputText></td>
+                                    <td><h:commandButton value="#{msg.deleteOrder}" action="#{animalManager.deleteOrder(appeau.key)}"></h:commandButton></td> 
+                                </tr>
+                            </c:forEach>
+                        </table>
+                <br></br><h:outputText value="#{msg.prixTotal}"></h:outputText><br></br>
+                <h:outputText value="#{animalManager.total()}" converter="PriceConverter"/><br></br>
+                           
+                <br><h:commandButton value="#{msg.order}" action="#{animalManager.confirmOrder(clientManager.logged,clientManager.isLogged)}"></h:commandButton></br>
+                    </h:form>
             </ui:define>
 
 
