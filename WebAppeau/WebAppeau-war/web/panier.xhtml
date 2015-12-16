@@ -21,7 +21,13 @@
                                     </td>
                                     <td><h:outputText value="#{appeau.value.app.nom}"/></td>  
                                     <td><h:outputText value="#{appeau.value.app.prix}" converter="PriceConverter"/></td>  
-                                    <td> <h:outputText value="#{appeau.value.qtité}" ></h:outputText></td>
+                                    <td> <h:inputText id="quantiy" value="#{appeau.value.qtité}">
+                                        <f:validator validatorId="orderValidator"></f:validator>
+                                        <f:attribute name="confirmOrder" value ="#{confirmOrder}"/>
+                                        <f:attribute name="inputValAtt" value="#{animalManager.locale.toString()}"></f:attribute></h:inputText>
+                                        <h:commandButton value="#{msg.changeq}" action="#{animalManager.changeQuantity(appeau.value.app)}"></h:commandButton><br></br>
+                                        <h:message for="quantiy"></h:message>
+                                    </td>
                                     <td><h:commandButton value="#{msg.deleteOrder}" action="#{animalManager.deleteOrder(appeau.key)}"></h:commandButton></td> 
                                 </tr>
                             </c:forEach>

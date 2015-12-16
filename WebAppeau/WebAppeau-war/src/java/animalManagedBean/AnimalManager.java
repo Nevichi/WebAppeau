@@ -200,6 +200,12 @@ public class AnimalManager implements Serializable {
         return "faces/panier.xhtml";
     }
 
+    public void changeQuantity(Appeau app){
+        Contenant cont = hmapApp.get(app.getId());
+        cont.setApp(app);
+        cont.setPrix(app.getPrix() * cont.getQtité());
+        hmapApp.replace(app.getId(), cont);
+    }
     
     
     public int getQuantité() {
@@ -244,4 +250,13 @@ public class AnimalManager implements Serializable {
         
     }
     
+    
+    public int countPanier(){
+    int i = 0;
+        for(Contenant cont : hmapApp.values())
+        {
+            i++;
+        }
+        return i;
+    }
 }

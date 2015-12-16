@@ -69,7 +69,11 @@
                     </h:form></li>
                 </c:forEach>
                 
-                <li class="menuList"><h:link value="#{msg.panier}" outcome="panier.xhtml"></h:link></li>
+                <li class="menuList"><h:link value="#{msg.panier}" outcome="panier.xhtml"></h:link>
+                    <c:if test="#{animalManager.countPanier() > 0}">
+                        <h:outputText style="font-size: 12px;" value="(#{animalManager.countPanier()})"></h:outputText>
+                    </c:if>
+                </li>
                 <c:if test="#{clientManager.isLogged}">
                     <li class="menuList"><h:link value="#{msg.monCompteLabel}" outcome="monCompte.xhtml"></h:link></li>
                 </c:if>
