@@ -23,7 +23,7 @@ public class ClientSessionBean implements ClientSessionBeanLocal {
     @Override
     public void createClient(Client c) {
         try {
-            if( !(c.getAdresse().equals("")) || !(c.getCpostal() < 1000) || !(c.getCpostal() > 9999) || !(c.getEmail().equals("")) || !(c.getPassword().equals("")) || !(c.getUsername().equals("")) || !(c.getVille().equals("")) ){
+            if( !(c.getAdresse().equals("")) && !(c.getCpostal() < 1000) && !(c.getCpostal() > 9999) && !(c.getEmail().equals("")) && !(c.getPassword().equals("")) && !(c.getUsername().equals("")) && !(c.getVille().equals("")) ){
             clientFacade.createClient(c);
             }
         } catch (Exception ex) {
