@@ -7,6 +7,7 @@ package business;
 
 import facades.CommandeFacadeLocal;
 import facades.ContenantFacadeLocal;
+import java.util.Date;
 import java.util.HashMap;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -24,11 +25,29 @@ public class CommandeSessionBean implements CommandeSessionBeanLocal {
     
     @Override
     public void createCommande(Commande cmd){
-        commandeFacade.createCommande(cmd);
+        Date date = new Date();
+        if( !(cmd.getClient()==null) || (date.compareTo(cmd.getDateCommande())<0))
+        {
+            commandeFacade.createCommande(cmd);
+        }
     }
     
+    @Override
     public void createContenant(HashMap<Integer, Contenant> hmapApp){
-        contenantFacade.createContenant(hmapApp);
+        
+        boolean isValid = true;
+        
+        for(Contenant cont : hmapApp.values())
+        {
+            if( (cont.getIDCommande()<=0) || (cont.getPrix() <= 0) || (cont.getQtité() <=0) ){
+                isValid = false;
+            }
+        }
+        
+        if(isValid){
+            contenantFacade.createContenant(hmapApp);
+        }
+        
     }
     
 }
