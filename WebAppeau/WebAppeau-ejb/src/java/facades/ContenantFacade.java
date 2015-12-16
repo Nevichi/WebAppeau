@@ -37,13 +37,14 @@ public class ContenantFacade extends AbstractFacade<Contenant> implements Conten
     public void createContenant(HashMap<Integer, model.Contenant> hmapapp){
         Query query = em.createNamedQuery("Commande.findById");
         entityPackage.Contenant contET;
-        entityPackage.Appeau appET = new entityPackage.Appeau();
+        entityPackage.Appeau appET;
         BigDecimal b;
         entityPackage.Commande cmd;
         int c;
         
         for(model.Contenant cont : hmapapp.values())
         {
+            appET = new entityPackage.Appeau();
             contET = new entityPackage.Contenant();
             appET.setId(cont.getApp().getId());
             appET.setIdanimal(null);

@@ -39,7 +39,7 @@ public class CommandeSessionBean implements CommandeSessionBeanLocal {
         
         for(Contenant cont : hmapApp.values())
         {
-            if( (cont.getIDCommande()<=0) || (cont.getPrix() <= 0) || (cont.getQtité() <=0) ){
+            if( (cont.getPrix() <= 0) || (cont.getQtité() <=0) ){
                 isValid = false;
             }
         }

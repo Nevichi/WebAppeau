@@ -15,17 +15,29 @@
             <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/entityPackage/Contenant.java</file>
             <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/facades/CommandeFacade.java</file>
             <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/entityPackage/Client.java</file>
+            <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/facades/LangueFacade.java</file>
             <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/facades/ClientFacadeLocal.java</file>
+            <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/facades/AbstractFacade.java</file>
+            <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/business/AnimalSessionBeanLocal.java</file>
+            <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/facades/CategorieFacadeLocal.java</file>
             <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/facades/AppeauFacade.java</file>
             <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/entityPackage/Appeau.java</file>
             <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/facades/TradcategorieFacadeLocal.java</file>
             <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/facades/ContenantFacade.java</file>
             <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/business/ClientSessionBeanLocal.java</file>
+            <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/facades/AnimalFacadeLocal.java</file>
+            <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/facades/TradanimalFacadeLocal.java</file>
+            <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/business/AppeauSessionBean.java</file>
+            <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/facades/AppeauFacadeLocal.java</file>
             <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/business/CategorieSessionBean.java</file>
             <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/business/CommandeSessionBean.java</file>
             <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/facades/ContenantFacadeLocal.java</file>
+            <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/facades/AnimalFacade.java</file>
             <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/facades/CommandeFacadeLocal.java</file>
             <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/entityPackage/Categorie.java</file>
+            <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/business/AppeauSessionBeanLocal.java</file>
+            <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/facades/LangueFacadeLocal.java</file>
+            <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/facades/TradanimalFacade.java</file>
             <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/business/CategorieSessionBeanLocal.java</file>
             <file>file:/C:/Users/Quentin/Desktop/WebAppeau/WebAppeau/WebAppeau-ejb/src/java/entityPackage/Animal.java</file>
         </group>

@@ -4,9 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Quentin/Desktop/WebAppeau/appeauLibrary/src/model/Appeau.java</file>
+            <file>file:/C:/Users/Quentin/Desktop/WebAppeau/appeauLibrary/src/model/Animal.java</file>
             <file>file:/C:/Users/Quentin/Desktop/WebAppeau/appeauLibrary/src/model/Commande.java</file>
             <file>file:/C:/Users/Quentin/Desktop/WebAppeau/appeauLibrary/src/model/Client.java</file>
+            <file>file:/C:/Users/Quentin/Desktop/WebAppeau/appeauLibrary/src/model/Categorie.java</file>
             <file>file:/C:/Users/Quentin/Desktop/WebAppeau/appeauLibrary/src/model/Contenant.java</file>
+            <file>file:/C:/Users/Quentin/Desktop/WebAppeau/appeauLibrary/src/model/Panier.java</file>
         </group>
     </open-files>
 </project-private>
