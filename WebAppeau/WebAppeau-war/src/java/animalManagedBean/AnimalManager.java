@@ -200,6 +200,8 @@ public class AnimalManager implements Serializable {
         return "faces/panier.xhtml";
     }
 
+    
+    
     public int getQuantité() {
         return quantité;
     }

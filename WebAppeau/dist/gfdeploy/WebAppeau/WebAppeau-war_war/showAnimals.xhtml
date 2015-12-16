@@ -24,7 +24,6 @@
                             <c:if test="#{!animal.isHunted}">
                             <h:link value="#{animal.nom}" outcome="showAppeau.xhtml">
                                 <f:param name="selectedAnimal" value="#{animal.id}"></f:param>
-                                <f:param name="hunted" value="#{animal.isHunted}"></f:param>
                             </h:link>
                             </c:if>
                             <br></br>
