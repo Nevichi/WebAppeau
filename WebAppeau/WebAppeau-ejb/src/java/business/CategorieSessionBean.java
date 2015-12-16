@@ -12,10 +12,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import model.Categorie;
 
-/**
- *
- * @author Quentin
- */
+
 @Stateless
 public class CategorieSessionBean implements CategorieSessionBeanLocal {
     @EJB

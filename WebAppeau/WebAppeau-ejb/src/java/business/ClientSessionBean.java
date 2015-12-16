@@ -12,10 +12,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import model.Client;
 
-/**
- *
- * @author Quentin
- */
+
 @Stateless
 public class ClientSessionBean implements ClientSessionBeanLocal {
     @EJB

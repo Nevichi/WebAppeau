@@ -8,10 +8,7 @@ package business;
 import javax.ejb.Local;
 import model.Client;
 
-/**
- *
- * @author Quentin
- */
+
 @Local
 public interface ClientSessionBeanLocal {
 

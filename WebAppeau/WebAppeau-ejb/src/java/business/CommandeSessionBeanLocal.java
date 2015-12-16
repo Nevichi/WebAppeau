@@ -10,10 +10,7 @@ import javax.ejb.Local;
 import model.Commande;
 import model.Contenant;
 
-/**
- *
- * @author Quentin
- */
+
 @Local
 public interface CommandeSessionBeanLocal {
     public void createCommande(Commande cmd);

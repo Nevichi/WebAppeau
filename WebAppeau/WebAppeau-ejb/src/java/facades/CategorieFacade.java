@@ -14,10 +14,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-/**
- *
- * @author Quentin
- */
+
 @Stateless
 public class CategorieFacade extends AbstractFacade<Categorie> implements CategorieFacadeLocal {
     @PersistenceContext(unitName = "WebAppeau-ejbPU")

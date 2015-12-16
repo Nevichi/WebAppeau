@@ -58,8 +58,8 @@
                         <f:validateDoubleRange minimum="1000" maximum="9000"/></h:inputText>
                     <h:message for="cpostal"></h:message><br></br>
                     
-                    <h:outputLabel value="#{msg.numTelLabel}" for="numTel"></h:outputLabel>
-                    <h:inputText id="numTel" required="true" validatorMessage=" #{msg.errorNumTel}" value="#{inscrManager.clientToManage.numTel}"></h:inputText>
+                    <h:outputLabel value="#{msg.numTelLabel}" for="numTel"></h:outputLabel> <h:outputText value="(*)"></h:outputText>
+                    <h:inputText id="numTel" validatorMessage=" #{msg.errorNumTel}" value="#{inscrManager.clientToManage.numTel}"></h:inputText>
                         
                     <h:message for="numTel"></h:message><br></br>
                     
@@ -67,6 +67,7 @@
                 
                 <br></br><h:commandButton value ="#{msg.next}" action="faces/inscriptionRes.xhtml"/>
                 </h:form>
+                    <h:outputText value="#{msg.champsObligatoire}"></h:outputText>
                 </c:if>
                 
                 <c:if test="#{clientManager.isLogged}">

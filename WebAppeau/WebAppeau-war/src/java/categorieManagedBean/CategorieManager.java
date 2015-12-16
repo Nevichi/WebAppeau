@@ -13,10 +13,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import model.Categorie;
 
-/**
- *
- * @author Quentin
- */
+
 @Named(value="categorieManager")
 @SessionScoped
 public class CategorieManager implements Serializable {
@@ -38,10 +35,6 @@ public class CategorieManager implements Serializable {
     public CategorieManager() {
         categorieToManage = new Categorie();
     }
-    
-    /*public List<Categorie> allCategorie(){
-    return categorieSessionBean.allCategorie();
-    }*/
     
     public List<Categorie> allCategorieTrad(String id){
         int intid;

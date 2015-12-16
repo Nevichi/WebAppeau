@@ -10,10 +10,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-/**
- *
- * @author Quentin
- */
+
 @Stateless
 public class TradanimalFacade extends AbstractFacade<Tradanimal> implements TradanimalFacadeLocal {
     @PersistenceContext(unitName = "WebAppeau-ejbPU")

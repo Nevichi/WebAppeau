@@ -13,10 +13,7 @@ import javax.ejb.Stateless;
 import model.Commande;
 import model.Contenant;
 
-/**
- *
- * @author Quentin
- */
+
 @Stateless
 public class CommandeSessionBean implements CommandeSessionBeanLocal {
     @EJB

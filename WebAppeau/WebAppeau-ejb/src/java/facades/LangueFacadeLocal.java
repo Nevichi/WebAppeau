@@ -9,10 +9,7 @@ import entityPackage.Langue;
 import java.util.List;
 import javax.ejb.Local;
 
-/**
- *
- * @author Quentin
- */
+
 @Local
 public interface LangueFacadeLocal {
 

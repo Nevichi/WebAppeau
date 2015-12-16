@@ -15,10 +15,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import model.Animal;
 
-/**
- *
- * @author Quentin
- */
 @Stateless
 public class AppeauFacade extends AbstractFacade<Appeau> implements AppeauFacadeLocal {
     @PersistenceContext(unitName = "WebAppeau-ejbPU")

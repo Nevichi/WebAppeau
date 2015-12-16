@@ -16,10 +16,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import model.Client;
 
-/**
- *
- * @author Quentin
- */
+
 @Named(value="clientManager")
 @SessionScoped
 public class clientManager implements Serializable {
@@ -70,10 +67,6 @@ public class clientManager implements Serializable {
     
     
     
-    
-    
-    
-    //validate login
     public String validateUsernamePassword() throws Exception {
         boolean valid = clientSessionBean.validate(client.getUsername(), client.getPassword());
         FacesContext ctx = FacesContext.getCurrentInstance();
@@ -94,7 +87,6 @@ public class clientManager implements Serializable {
         }
     }
  
-    //logout event, invalidate session
     public String logout() {
         FacesContext ctx = FacesContext.getCurrentInstance();
         logged = null;

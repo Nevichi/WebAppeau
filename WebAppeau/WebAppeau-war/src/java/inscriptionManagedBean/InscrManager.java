@@ -12,10 +12,7 @@ import java.io.Serializable;
 import javax.ejb.EJB;
 import model.Client;
 
-/**
- *
- * @author Quentin
- */
+
 @Named(value = "inscrManager")
 @SessionScoped
 public class InscrManager implements Serializable {

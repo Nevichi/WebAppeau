@@ -28,10 +28,7 @@ import model.Categorie;
 import model.Commande;
 import model.Contenant;
 
-/**
- *
- * @author Quentin
- */
+
 @Named(value="animalManager")
 @SessionScoped
 public class AnimalManager implements Serializable {

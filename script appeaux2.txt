@@ -11,63 +11,63 @@ Drop table Client;
 create table Categorie
 (
 id integer generated always as identity (start with 1, increment by 1) constraint idcat_pk primary key,
-nom varchar(256)
+nom varchar(256) not null
 );
 
 
 create table Langue
 (
 id integer generated always as identity (start with 1, increment by 1) constraint idlang_pk primary key,
-nom varchar(256)
+nom varchar(256) not null
 );
 
 create table Client
 (
 id integer generated always as identity (start with 1, increment by 1) constraint idcli_pk primary key,
-email varchar(100),
-adresseDomicile varchar(256),
-ville varchar(256),
-cPostal numeric(5),
+email varchar(100) not null,
+adresseDomicile varchar(256) not null,
+ville varchar(256) not null,
+cPostal numeric(5) not null check(cPostal > 999 and cPostal < 10000),
 numTel integer,
-login varchar (25),
+login varchar (25) not null,
 password varchar(512)
 );
 
 create table TradCategorie
 (
 id integer generated always as identity (start with 1, increment by 1) constraint idtradcat_pk primary key,
-tradNom varchar(256),
-IDCategorie integer constraint IDCc_fk references Categorie(id),
-IDLangue integer constraint IDLc_fk references Langue(id)
+tradNom varchar(256) not null,
+IDCategorie integer constraint IDCc_fk references Categorie(id) not null,
+IDLangue integer constraint IDLc_fk references Langue(id) not null
 );
 
 
 create table Animal
 (
 id integer generated always as identity (start with 1, increment by 1) constraint idani_pk primary key,
-nom varchar(256),
-dateDébutChasse date,
-dateFinChasse date,
-urlImage varchar(256),
-IDCategorie integer constraint IDC_fk references Categorie(id)
+nom varchar(256) not null,
+dateDébutChasse date not null,
+dateFinChasse date not null, 
+urlImage varchar(256) not null,
+IDCategorie integer constraint IDC_fk references Categorie(id) not null
 );
 
 create table TradAnimal
 (
 id integer generated always as identity (start with 1, increment by 1) constraint idtradani_pk primary key,
-nom varchar(256),
-IDAnimal integer constraint IDAa_fk references Animal(id),
-IDLangue integer constraint IDLa_fk references Langue(id)
+nom varchar(256) not null,
+IDAnimal integer constraint IDAa_fk references Animal(id) not null,
+IDLangue integer constraint IDLa_fk references Langue(id) not null
 );
 
 
 create table Appeau
 (
 id integer generated always as identity (start with 1, increment by 1) constraint idapp_pk primary key,
-prix numeric(6,2),
-nom varchar(256),
-urlImage varchar(256),
-IDAnimal integer constraint IDA_fk references Animal(id)
+prix numeric(6,2) not null check(prix>0),
+nom varchar(256) not null,
+urlImage varchar(256) not null,
+IDAnimal integer constraint IDA_fk references Animal(id) not null
 );
 
 
@@ -75,8 +75,8 @@ IDAnimal integer constraint IDA_fk references Animal(id)
 create table Commande
 (
 id integer generated always as identity (start with 1, increment by 1) constraint idcmd_pk primary key,
-dateCommande date,
-IDClient integer constraint IDClient_fk references Client(id)
+dateCommande date not null,
+IDClient integer constraint IDClient_fk references Client(id) not null
 );
 
 
@@ -84,10 +84,10 @@ IDClient integer constraint IDClient_fk references Client(id)
 create table Contenant
 (
 id integer generated always as identity (start with 1, increment by 1) constraint idcont_pk primary key,
-prixAppeaux numeric(8,2),
-quantité integer,
-IDAppeau integer constraint IDAppeau_fk references Appeau(id),
-IDCmd integer constraint IDCmd_fk references Commande(id)
+prixAppeaux numeric(10,2) not null check(prixAppeaux>0),
+quantité integer not null check(quantité>0),
+IDAppeau integer constraint IDAppeau_fk references Appeau(id) not null,
+IDCmd integer constraint IDCmd_fk references Commande(id) not null
 );
 
 
@@ -105,7 +105,7 @@ insert into TradCategorie(Tradnom, IDCategorie, IDLangue) values ('Plaines', 2, 
 insert into TradCategorie(Tradnom, IDCategorie, IDLangue) values ('Plains', 2, 2);
 insert into Categorie(nom) values ('Mamiferres');
 insert into TradCategorie(Tradnom, IDCategorie, IDLangue) values ('Mammifères', 3, 1);
-insert into TradCategorie(Tradnom, IDCategorie, IDLangue) values ('Mamals', 3, 2);
+insert into TradCategorie(Tradnom, IDCategorie, IDLangue) values ('Mammals', 3, 2);
 
 insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Becassine des Marais', date('15.10.2015'), date('31.12.2015'), './images/animaux/becassinemarais.jpg',1);
 insert into Appeau(prix, nom, urlImage, IDAnimal) values (000009.90, 'Appeau Becassine des Marais', './images/appeaux/marais/becassinedesmarais.jpg',1);
@@ -113,12 +113,10 @@ insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Becassine des Marais', 
 insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Common Snipe', 1, 2);
 insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Canard Colvert', date('15.08.2015'), date('31.01.2016'), './images/animaux/canardcolvert.jpg',1);
 insert into Appeau(prix, nom, urlImage, IDAnimal) values (000029.90, 'Appeau Canard Colvert', './images/appeaux/marais/canardcolvert1.jpg',2);
-insert into Appeau(prix, nom, urlImage, IDAnimal) values (000014.90, 'Appeau Canard Colvert', './images/appeaux/marais/canardcolvert2.jpg',2);
 insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Canard Colvert', 2, 1);
 insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Mallard', 2, 2);
 insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Canard Siffleur', date('01.09.2015'), date('31.01.2016'), './images/animaux/canardsiffleur.jpg',1);
 insert into Appeau(prix, nom, urlImage, IDAnimal) values (000009.90, 'Appeau Canard Siffleur', './images/appeaux/marais/canardsiffleur.jpg',3);
-insert into Appeau(prix, nom, urlImage, IDAnimal) values (000009.90, 'Appeau Canard Siffleur', './images/appeaux/marais/canardsiffleur2.jpg',3);
 insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Canard Siffleur', 3, 1);
 insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Eurasian Wigeon', 3, 2);
 insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Oie cendrée', date('01.09.2015'), date('31.01.2016'), './images/animaux/oiecendree.jpg',1);
@@ -127,8 +125,6 @@ insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Oie cendrée', 4, 1);
 insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Greylag Goose', 4, 2);
 insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Vanneau Huppé', date('06.05.2015'), date('06.05.2015'), './images/animaux/vanneauhuppe.jpg',1);
 insert into Appeau(prix, nom, urlImage, IDAnimal) values (000019.90, 'Appeau Vanneau Huppe', './images/appeaux/marais/vanneauhuppe.jpg',5);
-insert into Appeau(prix, nom, urlImage, IDAnimal) values (000009.90, 'Appeau Vanneau Huppe', './images/appeaux/marais/vanneauhuppe2.jpg',5);
-insert into Appeau(prix, nom, urlImage, IDAnimal) values (000009.90, 'Appeau Vanneau Huppe', './images/appeaux/marais/vanneauhuppe3.jpg',5);
 insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Vanneau huppé', 5, 1);
 insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Northern Lapwing', 5, 2);
 
@@ -212,7 +208,6 @@ insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Cochon', 30, 1);
 insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Pig', 30, 2);
 insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Marmotte', date('01.09.2015'), date('31.01.2016'), './images/animaux/marmotte.jpg', 3);
 insert into Appeau(prix, nom, urlImage, IDAnimal) values (000009.90, 'Appeau Marmotte', './images/appeaux/mammifere/marmotte.jpg',31);
-insert into Appeau(prix, nom, urlImage, IDAnimal) values (000009.90, 'Appeau Marmotte', './images/appeaux/mammifere/marmotte2.jpg',31);
 insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Marmotte', 31, 1);
 insert into TradAnimal(nom, IDAnimal, IDLangue) values ('Marmot', 31, 2);
 insert into Animal(nom, dateDébutChasse, dateFinChasse, urlImage, IDCategorie) values ('Renard', date('01.01.2015'), date('31.12.2015'), './images/animaux/renard.jpg', 3);

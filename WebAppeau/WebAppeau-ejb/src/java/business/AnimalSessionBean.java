@@ -12,10 +12,6 @@ import javax.ejb.Stateless;
 import model.Animal;
 import model.Categorie;
 
-/**
- *
- * @author Quentin
- */
 @Stateless
 public class AnimalSessionBean implements AnimalSessionBeanLocal {
     @EJB

@@ -13,10 +13,6 @@ import javax.ejb.Stateless;
 import model.Animal;
 import model.Appeau;
 
-/**
- *
- * @author Quentin
- */
 @Stateless
 public class AppeauSessionBean implements AppeauSessionBeanLocal {
     @EJB

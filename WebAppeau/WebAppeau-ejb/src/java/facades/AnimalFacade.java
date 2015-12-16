@@ -17,10 +17,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import model.Categorie;
 
-/**
- *
- * @author Quentin
- */
 @Stateless
 public class AnimalFacade extends AbstractFacade<Animal> implements AnimalFacadeLocal {
     @PersistenceContext(unitName = "WebAppeau-ejbPU")
@@ -122,6 +118,7 @@ public class AnimalFacade extends AbstractFacade<Animal> implements AnimalFacade
     }
     
     
+    @Override
     public List<model.Animal> search(String item, int idlang){
         Query queryLangue;
         Query queryAnimal;

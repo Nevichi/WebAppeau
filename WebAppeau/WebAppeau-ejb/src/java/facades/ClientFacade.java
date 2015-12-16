@@ -17,10 +17,7 @@ import javax.persistence.Query;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
-/**
- *
- * @author Quentin
- */
+
 @Stateless
 public class ClientFacade extends AbstractFacade<Client> implements ClientFacadeLocal {
     @PersistenceContext(unitName = "WebAppeau-ejbPU")

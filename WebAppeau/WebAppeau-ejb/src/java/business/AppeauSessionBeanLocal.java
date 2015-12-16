@@ -10,10 +10,7 @@ import javax.ejb.Local;
 import model.Animal;
 import model.Appeau;
 
-/**
- *
- * @author Quentin
- */
+
 @Local
 public interface AppeauSessionBeanLocal {
 

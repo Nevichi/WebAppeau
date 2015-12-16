@@ -10,10 +10,7 @@ import java.util.List;
 import javax.ejb.Local;
 import model.Categorie;
 
-/**
- *
- * @author Quentin
- */
+
 @Local
 public interface AnimalFacadeLocal {
 
