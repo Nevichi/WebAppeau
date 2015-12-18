@@ -54,6 +54,7 @@ public class AnimalManager implements Serializable {
     private HashMap<Integer, Contenant> hmapApp;
     private int quantité;
     private Commande cmd;
+    private boolean isHunted;
     
 
     public Animal getAnimalToManage() {
@@ -76,6 +77,14 @@ public class AnimalManager implements Serializable {
 
     public void setItemSearch(String itemSearch) {
         this.itemSearch = itemSearch;
+    }
+
+    public boolean isIsHunted() {
+        return isHunted;
+    }
+
+    public void setIsHunted(boolean isHunted) {
+        this.isHunted = isHunted;
     }
 
     
@@ -118,9 +127,20 @@ public class AnimalManager implements Serializable {
     return appeauSessionBean.getAppeauList();
     }
 
-      public List<Appeau> appeauFromAnimal(int an){
-            saveAnimal=an;
-            return appeauSessionBean.appeauFromAnimal(animalSessionBean.animalFromId(saveAnimal));
+      public List<Appeau> appeauFromAnimal(int an, boolean chasse){
+
+          if(an == 0)
+          {
+              return appeauSessionBean.appeauFromAnimal(animalSessionBean.animalFromId(saveAnimal));
+          }
+          else
+          {
+              saveAnimal=an;
+              isHunted = chasse;
+              return appeauSessionBean.appeauFromAnimal(animalSessionBean.animalFromId(an));
+          }
+            
+            
       }
 
     public int getSaveAnimal() {
@@ -231,17 +251,19 @@ public class AnimalManager implements Serializable {
     
     public String confirmOrder(String user, boolean isLogged){
         cmd = new Commande();
-        if(isLogged){
+        if(isLogged && !(hmapApp.isEmpty())){
             Date date = new Date();
             cmd.setDateCommande(date);
             cmd.setClient(clientSessionBean.findClient(user));
             commandeSessionBean.createCommande(cmd);
             commandeSessionBean.createContenant(hmapApp);
-            hmapApp = new HashMap<Integer, Contenant>();
+            //hmapApp = new HashMap<Integer, Contenant>();
+            hmapApp.clear();
             return "confirm";
         }
         else
         {
+            if(hmapApp.isEmpty()){return "panierError.xhtml";}
             return "loginError";
         }
         
@@ -255,5 +277,18 @@ public class AnimalManager implements Serializable {
             i++;
         }
         return i;
+    }
+    
+    public boolean animalIsHunted(boolean chasse){
+        
+        if(chasse)
+        {
+            isHunted = chasse;
+            return chasse;
+        }
+        else
+        {
+            return isHunted;
+        }
     }
 }

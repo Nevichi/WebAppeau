@@ -21,20 +21,9 @@ public class OrderValidator implements Validator {
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         String ent = String.valueOf(value);
         String lang = (String) component.getValueExpression("inputValAtt").getValue(context.getELContext());
-        int entry = Integer.parseInt(ent);
         FacesMessage mess;
-        if(!ent.matches("^[0-9]+$")){
-            
-            if(lang.equals("fr")){
-                throw new ValidatorException(new FacesMessage (" Vous devez entre un nombre"));
-            }
-            else
-            {
-                throw new ValidatorException(new FacesMessage (" You must give a number"));
-            }
-        }
-        
-        
+        try{
+        int entry = Integer.parseInt(ent);
         if(entry <= 0){
             if(lang.equals("fr")){
             mess = new FacesMessage(" Vous devez entrer un nombre positif !");
@@ -45,6 +34,22 @@ public class OrderValidator implements Validator {
             }
             throw new ValidatorException(mess);
         }
+        }
+        catch(Exception e)
+        {
+            if(lang.equals("fr")){
+                throw new ValidatorException(new FacesMessage (" Vous devez entre un nombre"));
+            }
+            else
+            {
+                throw new ValidatorException(new FacesMessage (" You must give a number"));
+            }
+        }
+        
+        
+        
+        
+
         
     }
     
